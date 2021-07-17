@@ -20,26 +20,7 @@ public class SistemaGestaoEscolar {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        System.out.println("escola");
-        Vector vec = new Vector();
-        Pessoa pes;
-        Professor prof;
-        prof = new Professor("Mestre", 1, "Isac", "Lapow", 'M', "123456", "Solt", "132", "123");
-        vec.addElement(prof);
-        vec.trimToSize();
-        prof = new Professor("Lic", 2, "Laer", "Po", 'M', "123456", "CAs", "132", "123");
-        vec.addElement(prof);
-        vec.trimToSize();
-
-        for (int i = 0; i < vec.size(); i++) {
-            pes = (Pessoa) vec.elementAt(i);
-            
-            if (pes instanceof Professor) {
-                prof = (Professor) pes;
-                System.out.println(prof.toString());
-                
-            }
-        }
+        
     }
 
 }
