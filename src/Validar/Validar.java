@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
  */
 public class Validar {
 
-    private BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+    private static BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
 
     public static double numero(String guide, int min, int max) {
         double num = 0;
