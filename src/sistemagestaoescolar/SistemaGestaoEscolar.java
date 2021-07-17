@@ -5,9 +5,6 @@
  */
 package sistemagestaoescolar;
 
-import Objectos.*;
-import java.util.Vector;
-
 /**
  *
  * @author isacl
@@ -19,8 +16,7 @@ public class SistemaGestaoEscolar {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        
+        System.out.println("Escola");
     }
 
 }
