@@ -6,7 +6,6 @@
 package sistemagestaoescolar;
 
 import Validar.Validar;
-import java.text.ParseException;
 
 /**
  *
@@ -16,7 +15,7 @@ public class Menu {
 
     private static int opEsc;
 
-    static void MainCase1() throws ParseException {
+    static void MainCase1() {
         System.out.println("Selecione a opção:");
         System.out.println("1. Matricular Aluno");
         System.out.println("2. Adicionar");
