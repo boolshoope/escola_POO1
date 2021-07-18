@@ -109,7 +109,7 @@ public class Pessoa implements Serializable{
     }
 
     public String toString() {
-        String format = "%-20s %-20s %-20s %-20s %-20s %-20s %-20s";
+        String format = "%-12s %-15s %-20s %-12s %-20s %-20s %-20s";
         return String.format(format, idPessoa, pNome, apelido, sexo, nrBI, estadoCivil, tel1 + "  " + tel2);
     }
 }

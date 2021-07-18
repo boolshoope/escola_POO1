@@ -6,6 +6,7 @@
 package Objectos;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -57,7 +58,9 @@ public class Aluno extends Pessoa implements Serializable{
     }
 
     public String toString(String encEd) {
-        String format1 = "%-20s", format2 = "%-20s %-20s";
-        return String.format(format1, nrEstudante) + super.toString() + String.format(format2, dataNascimento, encEd);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = formatter.format(dataNascimento);
+        String format1 = "%-15s", format2 = "%-20s %-20s";
+        return String.format(format1, nrEstudante) + super.toString() + String.format(format2, strDate, encEd);
     }
 }

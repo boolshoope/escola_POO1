@@ -59,6 +59,7 @@ public class Menu {
                     MainCase4();
                     break;
                 case 5:
+                    GravarVectores();
                     System.out.println("Obrigado.");
                     System.exit(0);
                     break;
@@ -75,8 +76,18 @@ public class Menu {
         vecDisciplina = BD.LerDadosDoFichObj("Disciplina");
         vecClasse = BD.LerDadosDoFichObj("Classe");
         vecTurma = BD.LerDadosDoFichObj("Turma");
-        
-        //BD.GravarFichObj(vecProfessor, "Professor");
+
+        //BD.GravarFichObj(new Vector(), "Aluno");
+    }
+
+    static void GravarVectores() {
+        BD.GravarFichObj(vecAluno, "Aluno");
+        BD.GravarFichObj(vecProfessor, "Professor");
+        BD.GravarFichObj(vecEncarregado, "EncarregadoEducacao");
+        BD.GravarFichObj(vecAnoAcademico, "AnoAcademico");
+        BD.GravarFichObj(vecDisciplina, "Disciplina");
+        BD.GravarFichObj(vecClasse, "Classe");
+        BD.GravarFichObj(vecTurma, "Turma");
     }
 
     static void MainCase1() {
@@ -319,11 +330,11 @@ public class Menu {
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Visualizar Encarregados de Educacao ****|");
-                Visualizar.ViewPessoa("encarregadoEducacao");
+                Visualizar.ViewEncarregadoEducacao();
                 break;
             case 2:
                 System.out.println("|**** Visualizar Professores ****|");
-                Visualizar.ViewPessoa("professor");
+                Visualizar.ViewProfessor();
                 break;
             case 3:
                 System.out.println("|**** Visualizar Ano Academico ****|");
@@ -343,7 +354,7 @@ public class Menu {
                 break;
             case 7:
                 System.out.println("|**** Visualizar Alunos ****|");
-                Visualizar.ViewPessoa("aluno");
+                Visualizar.ViewAluno();
                 break;
             case 8:
                 break;

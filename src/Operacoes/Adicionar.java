@@ -75,12 +75,6 @@ public class Adicionar {
         String parentesco = Validar.texto("Grau de Parentesco: ", 3);
         EncarregadoEducacao enc = new EncarregadoEducacao(x, parentesco);
 
-        /*
-        if (verificarEncarregado(enc.getIdPessoa())) {
-            System.out.println("O encarregado ja esta registrado!\nTente novamente....");
-            return -1;
-        }
-         */
         vecEncarregado.addElement(enc);
         vecEncarregado.trimToSize();
         
