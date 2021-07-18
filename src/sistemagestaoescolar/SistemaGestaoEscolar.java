@@ -5,10 +5,9 @@
  */
 package sistemagestaoescolar;
 
+import Objectos.*;
 import Validar.Validar;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Vector;
 
 /**
  *
@@ -19,6 +18,8 @@ public class SistemaGestaoEscolar {
     /**
      * @param args the command line arguments
      */
+    static Vector vecAnoAcademico, vecDisciplina, vecClasse, vecTurma;
+
     public static void main(String[] args) {
         // TODO code application logic here
         int opEsc;
@@ -161,19 +162,69 @@ public class SistemaGestaoEscolar {
     }
 
     static void ViewAnoAcademico() {
+        AnoAcademico ano;
+        boolean ctrl = true;
 
+        for (int i = 0; i < vecAnoAcademico.size(); i++) {
+            ano = (AnoAcademico) vecAnoAcademico.elementAt(i);
+            if (ctrl) {
+                String format = "%-20s %-20s %-20s";
+                System.out.println(String.format(format, "idAnoAcademico", "Ano", "Trimestre"));
+                ctrl = false;
+            }
+            System.out.println(ano.toString());
+        }
     }
 
     static void ViewDisciplina() {
+        Disciplina disc;
+        boolean ctrl = true;
 
+        for (int i = 0; i < vecDisciplina.size(); i++) {
+            disc = (Disciplina) vecDisciplina.elementAt(i);
+            if (ctrl) {
+                String format = "%-20s %-20s";
+                System.out.println(String.format(format, "idDisciplina", "Nome"));
+                ctrl = false;
+            }
+            System.out.println(disc.toString());
+        }
     }
 
     static void ViewClasse() {
+        Classe classe;
+        boolean ctrl = true;
 
+        for (int i = 0; i < vecClasse.size(); i++) {
+            classe = (Classe) vecClasse.elementAt(i);
+            if (ctrl) {
+                String format = "%-20s %-20s";
+                System.out.println(String.format(format, "idClasse", "Nome"));
+                ctrl = false;
+            }
+            System.out.println(classe.toString());
+        }
     }
 
     static void ViewTurma() {
+        Turma turma;
+        Classe classe;
+        boolean ctrl = true;
 
+        for (int i = 0; i < vecTurma.size(); i++) {
+            turma = (Turma) vecTurma.elementAt(i);
+            if (ctrl) {
+                String format = "%-20s %-20s %-20s %-20s";
+                System.out.println(String.format(format, "idTurma", "Nome", "Maximo de alunos", "Classe"));
+                ctrl = false;
+            }
+            for (int j = 0; j < vecClasse.size(); j++) {
+                classe = (Classe)vecClasse.elementAt(j);
+                if (classe.getIdClasse()== turma.getIdClasse()) {
+                    System.out.println(turma.toString(classe.getNome()));
+                }
+            }
+        }
     }
     // </editor-fold>
 }
