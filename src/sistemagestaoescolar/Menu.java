@@ -5,6 +5,7 @@
  */
 package sistemagestaoescolar;
 
+import BaseDeDados.BD;
 import Operacoes.Adicionar;
 import Operacoes.Editar;
 import Operacoes.Remover;
@@ -24,6 +25,8 @@ public class Menu {
     public static Vector vecAluno, vecProfessor, vecEncarregado, vecAnoAcademico, vecDisciplina, vecClasse, vecTurma;
 
     static void MainMenu() {
+        InicializarVectores();
+
         int opEsc;
         System.out.println("|*********** Sistema de Gestão de uma Escola ***********|");
 
@@ -62,6 +65,18 @@ public class Menu {
             }
             System.out.println("");
         } while (opEsc != 5);
+    }
+
+    static void InicializarVectores() {
+        vecAluno = BD.LerDadosDoFichObj("Aluno");
+        vecProfessor = BD.LerDadosDoFichObj("Professor");
+        vecEncarregado = BD.LerDadosDoFichObj("EncarregadoEducacao");
+        vecAnoAcademico = BD.LerDadosDoFichObj("AnoAcademico");
+        vecDisciplina = BD.LerDadosDoFichObj("Disciplina");
+        vecClasse = BD.LerDadosDoFichObj("Classe");
+        vecTurma = BD.LerDadosDoFichObj("Turma");
+        
+        //BD.GravarFichObj(vecProfessor, "Professor");
     }
 
     static void MainCase1() {
