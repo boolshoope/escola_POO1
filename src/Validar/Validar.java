@@ -5,9 +5,16 @@
  */
 package Validar;
 
+import Objectos.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.IntSummaryStatistics;
+import java.util.Vector;
+import static sistemagestaoescolar.Menu.vecAluno;
+import static sistemagestaoescolar.Menu.vecEncarregado;
+import static sistemagestaoescolar.Menu.vecProfessor;
 
 /**
  *
@@ -50,4 +57,64 @@ public class Validar {
         } while (txt.isEmpty() || txt.length() < minLength);
         return txt;
     }
+
+    //Gerar id automaticamente
+    public static int GetIdPessoa() {
+        /*
+        id[0] - idPessoa referente ao aluno
+        id[1] - idPessoa referente ao encarregado
+        id[2] - idPessoa referente ao professor
+        */
+        int[] id = new int[3];
+
+        if (vecAluno.isEmpty()) {
+            id[0] = 0;
+        } else {
+            Aluno aluno = (Aluno) vecAluno.elementAt(vecAluno.size() - 1);
+            id[0] = aluno.getIdPessoa() + 1;
+        }
+        
+        if (vecEncarregado.isEmpty()) {
+            id[1] = 0;
+        } else {
+            EncarregadoEducacao encEd = (EncarregadoEducacao) vecEncarregado.elementAt(vecEncarregado.size() - 1);
+            id[1] = encEd.getIdPessoa() + 1;
+        }
+        
+        if (vecProfessor.isEmpty()) {
+            id[2] = 0;
+        } else {
+            Professor prof = (Professor) vecProfessor.elementAt(vecProfessor.size() - 1);
+            id[2] = prof.getIdPessoa() + 1;
+        }
+        
+        //Serve para saber qual eh o maior numero no array id
+        IntSummaryStatistics stat = Arrays.stream(id).summaryStatistics();
+        int max = stat.getMax() + 1;
+
+        return max;
+    }
+
+    public static int GetIdEncarregado() {
+        int idEnc;
+        if (vecEncarregado.isEmpty()) {
+            return 0;
+        }
+        EncarregadoEducacao encEd = (EncarregadoEducacao) vecEncarregado.elementAt(vecEncarregado.size() - 1);
+        idEnc = encEd.getIdPessoa() + 1;
+
+        return idEnc;
+    }
+
+    public static int GetNrEstudante() {
+        int nrEstudante;
+        if (vecAluno.isEmpty()) {
+            return 1000;
+        }
+        Aluno aluno = (Aluno) vecAluno.elementAt(vecAluno.size() - 1);
+        nrEstudante = aluno.getNrEstudante() + 1;
+
+        return nrEstudante;
+    }
+
 }

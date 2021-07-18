@@ -5,7 +5,12 @@
  */
 package sistemagestaoescolar;
 
+import Operacoes.Adicionar;
+import Operacoes.Editar;
+import Operacoes.Remover;
+import Operacoes.Visualizar;
 import Validar.Validar;
+import java.util.Vector;
 
 /**
  *
@@ -14,6 +19,50 @@ import Validar.Validar;
 public class Menu {
 
     private static int opEsc;
+
+    public final static String nomeFich[] = {"aluno", "professor"};
+    public static Vector vecAluno, vecProfessor, vecEncarregado, vecAnoAcademico, vecDisciplina, vecClasse, vecTurma;
+
+    static void MainMenu() {
+        int opEsc;
+        System.out.println("|*********** Sistema de Gestão de uma Escola ***********|");
+
+        do {
+            System.out.println("|*********** MENU PRINCIPAL ***********|");
+            System.out.println("Selecione a opção:");
+            System.out.println("1. Operações básicas");
+            System.out.println("2. Alocar/Renovação de Matricula");
+            System.out.println("3. Visualizar notas dos alunos");
+            System.out.println("4. Visualizar outros dados");
+            System.out.println("5. Sair");
+
+            opEsc = (int) Validar.numero("-> ", 1, 5);
+
+            switch (opEsc) {
+                case 1:
+                    System.out.println("|**** Operações básicas ****|");
+                    MainCase1();
+                    break;
+                case 2:
+                    System.out.println("\n|**** Alocar/Renovação de Matricula ****|");
+                    MainCase2();
+                    break;
+                case 3:
+                    System.out.println("\n|**** Visualizar notas dos alunos ****|");
+                    MainCase3();
+                    break;
+                case 4:
+                    System.out.println("\n|**** Visualizar outros dados ****|");
+                    MainCase4();
+                    break;
+                case 5:
+                    System.out.println("Obrigado.");
+                    System.exit(0);
+                    break;
+            }
+            System.out.println("");
+        } while (opEsc != 5);
+    }
 
     static void MainCase1() {
         System.out.println("Selecione a opção:");
@@ -27,7 +76,7 @@ public class Menu {
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Matricular Aluno ****|");
-                SistemaGestaoEscolar.matricularAluno();
+                Adicionar.MatricularAluno();
                 break;
             case 2:
                 System.out.println("\n|**** Adicionar ****|");
@@ -40,9 +89,6 @@ public class Menu {
             case 4:
                 System.out.println("\n|**** Remover ****|");
                 MainCase14();
-                break;
-            case 5:
-                SistemaGestaoEscolar.main(null);
                 break;
         }
     }
@@ -70,19 +116,19 @@ public class Menu {
                 break;
             case 3:
                 System.out.println("|**** Adicionar Ano Academico ****|");
-                SistemaGestaoEscolar.AddAnoAcademico();
+                Adicionar.AddAnoAcademico();
                 break;
             case 4:
                 System.out.println("|**** Adicionar Disciplina ****|");
-                SistemaGestaoEscolar.AddDisciplina();
+                Adicionar.AddDisciplina();
                 break;
             case 5:
                 System.out.println("|**** Adicionar Classe ****|");
-                SistemaGestaoEscolar.AddClasse();
+                Adicionar.AddClasse();
                 break;
             case 6:
                 System.out.println("|**** Adicionar Turma ****|");
-                SistemaGestaoEscolar.AddTurma();
+                Adicionar.AddTurma();
                 break;
             case 7:
                 SistemaGestaoEscolar.main(null);
@@ -107,34 +153,33 @@ public class Menu {
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Editar Encarregado de Educacao ****|");
-                SistemaGestaoEscolar.EditPessoa("encarregadoEducacao");
+                Editar.EditPessoa("encarregadoEducacao");
                 break;
             case 2:
                 System.out.println("|**** Editar Professor ****|");
-                SistemaGestaoEscolar.EditPessoa("professor");
+                Editar.EditPessoa("professor");
                 break;
             case 3:
                 System.out.println("|**** Editar Ano Academico ****|");
-                SistemaGestaoEscolar.EditAnoAcademico();
+                Editar.EditAnoAcademico();
                 break;
             case 4:
                 System.out.println("|**** Editar Disciplina ****|");
-                SistemaGestaoEscolar.EditDisciplina();
+                Editar.EditDisciplina();
                 break;
             case 5:
                 System.out.println("|**** Editar Classe ****|");
-                SistemaGestaoEscolar.EditClasse();
+                Editar.EditClasse();
                 break;
             case 6:
                 System.out.println("|**** Editar Turma ****|");
-                SistemaGestaoEscolar.EditTurma();
+                Editar.EditTurma();
                 break;
             case 7:
                 System.out.println("|**** Editar Aluno ****|");
-                SistemaGestaoEscolar.EditPessoa("aluno");
+                Editar.EditPessoa("aluno");
                 break;
             case 8:
-                SistemaGestaoEscolar.main(null);
                 break;
         }
     }
@@ -158,34 +203,33 @@ public class Menu {
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Remover Encarregado de Educacao ****|");
-                SistemaGestaoEscolar.DelPessoa("encarregadoEducacao");
+                Remover.DelPessoa("encarregadoEducacao");
                 break;
             case 2:
                 System.out.println("|**** Remover Professor ****|");
-                SistemaGestaoEscolar.DelPessoa("professor");
+                Remover.DelPessoa("professor");
                 break;
             case 3:
                 System.out.println("|**** Remover Ano Academico ****|");
-                SistemaGestaoEscolar.DelAnoAcademico();
+                Remover.DelAnoAcademico();
                 break;
             case 4:
                 System.out.println("|**** Remover Disciplina ****|");
-                SistemaGestaoEscolar.DelDisciplina();
+                Remover.DelDisciplina();
                 break;
             case 5:
                 System.out.println("|**** Remover Classe ****|");
-                SistemaGestaoEscolar.DelClasse();
+                Remover.DelClasse();
                 break;
             case 6:
                 System.out.println("|**** Remover Turma ****|");
-                SistemaGestaoEscolar.DelTurma();
+                Remover.DelTurma();
                 break;
             case 7:
                 System.out.println("|**** Remover Aluno ****|");
-                SistemaGestaoEscolar.DelPessoa("aluno");
+                Remover.DelPessoa("aluno");
                 break;
             case 8:
-                SistemaGestaoEscolar.main(null);
                 break;
         }
     }
@@ -202,11 +246,11 @@ public class Menu {
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Renovar matricula de um aluno ****|");
-                SistemaGestaoEscolar.RenovarMatricula();
+                Adicionar.RenovarMatricula();
                 break;
             case 2:
                 System.out.println("\n|**** Alocar um professor a uma disciplina e a disciplina em uma classe ****|");
-                SistemaGestaoEscolar.Alocar();
+                Adicionar.Alocar();
                 break;
             case 3:
                 SistemaGestaoEscolar.main(null);
@@ -227,15 +271,15 @@ public class Menu {
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Listar as notas de uma turma num determinado ano acadêmico ****|");
-                SistemaGestaoEscolar.VisualizarNotasTurmaAnoAcademico();
+                Visualizar.VisualizarNotasTurmaAnoAcademico();
                 break;
             case 2:
                 System.out.println("\n|**** Listar as medias e a nota global de um aluno num determinado ano academico ****|");
-                SistemaGestaoEscolar.VisualizarMediasNotaGlobal();
+                Visualizar.VisualizarMediasNotaGlobal();
                 break;
             case 3:
                 System.out.println("\n|**** Listar as notas de um determinado aluno num trimestre ****|");
-                SistemaGestaoEscolar.VisualizarNotasAlunoTrimestre();
+                Visualizar.VisualizarNotasAlunoTrimestre();
                 break;
             case 4:
                 SistemaGestaoEscolar.main(null);
@@ -260,34 +304,33 @@ public class Menu {
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Visualizar Encarregados de Educacao ****|");
-                SistemaGestaoEscolar.ViewPessoa("encarregadoEducacao");
+                Visualizar.ViewPessoa("encarregadoEducacao");
                 break;
             case 2:
                 System.out.println("|**** Visualizar Professores ****|");
-                SistemaGestaoEscolar.ViewPessoa("professor");
+                Visualizar.ViewPessoa("professor");
                 break;
             case 3:
                 System.out.println("|**** Visualizar Ano Academico ****|");
-                SistemaGestaoEscolar.ViewAnoAcademico();
+                Visualizar.ViewAnoAcademico();
                 break;
             case 4:
                 System.out.println("|**** Visualizar Disciplinas ****|");
-                SistemaGestaoEscolar.ViewDisciplina();
+                Visualizar.ViewDisciplina();
                 break;
             case 5:
                 System.out.println("|**** Visualizar Classes ****|");
-                SistemaGestaoEscolar.ViewClasse();
+                Visualizar.ViewClasse();
                 break;
             case 6:
                 System.out.println("|**** Visualizar Turmas ****|");
-                SistemaGestaoEscolar.ViewTurma();
+                Visualizar.ViewTurma();
                 break;
             case 7:
                 System.out.println("|**** Visualizar Alunos ****|");
-                SistemaGestaoEscolar.ViewPessoa("aluno");
+                Visualizar.ViewPessoa("aluno");
                 break;
             case 8:
-                SistemaGestaoEscolar.main(null);
                 break;
         }
     }
