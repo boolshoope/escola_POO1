@@ -67,21 +67,21 @@ public class Validar {
         */
         int[] id = new int[3];
 
-        if (vecAluno.isEmpty()) {
+        if (vecAluno == null) {
             id[0] = 0;
         } else {
             Aluno aluno = (Aluno) vecAluno.elementAt(vecAluno.size() - 1);
             id[0] = aluno.getIdPessoa() + 1;
         }
         
-        if (vecEncarregado.isEmpty()) {
+        if (vecEncarregado == null) {
             id[1] = 0;
         } else {
             EncarregadoEducacao encEd = (EncarregadoEducacao) vecEncarregado.elementAt(vecEncarregado.size() - 1);
             id[1] = encEd.getIdPessoa() + 1;
         }
         
-        if (vecProfessor.isEmpty()) {
+        if (vecProfessor == null) {
             id[2] = 0;
         } else {
             Professor prof = (Professor) vecProfessor.elementAt(vecProfessor.size() - 1);
@@ -95,20 +95,9 @@ public class Validar {
         return max;
     }
 
-    public static int GetIdEncarregado() {
-        int idEnc;
-        if (vecEncarregado.isEmpty()) {
-            return 0;
-        }
-        EncarregadoEducacao encEd = (EncarregadoEducacao) vecEncarregado.elementAt(vecEncarregado.size() - 1);
-        idEnc = encEd.getIdPessoa() + 1;
-
-        return idEnc;
-    }
-
     public static int GetNrEstudante() {
         int nrEstudante;
-        if (vecAluno.isEmpty()) {
+        if (vecAluno == null) {
             return 1000;
         }
         Aluno aluno = (Aluno) vecAluno.elementAt(vecAluno.size() - 1);
@@ -117,4 +106,14 @@ public class Validar {
         return nrEstudante;
     }
 
+    public static int GetIdEncarregado() {
+        int idEnc;
+        if (vecEncarregado == null) {
+            return 0;
+        }
+        EncarregadoEducacao encEd = (EncarregadoEducacao) vecEncarregado.elementAt(vecEncarregado.size() - 1);
+        idEnc = encEd.getIdPessoa() + 1;
+
+        return idEnc;
+    }
 }
