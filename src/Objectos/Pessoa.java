@@ -5,11 +5,13 @@
  */
 package Objectos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author isacl
  */
-public class Pessoa {
+public class Pessoa implements Serializable{
 
     protected int idPessoa;
     protected String pNome;

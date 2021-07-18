@@ -5,13 +5,14 @@
  */
 package Objectos;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author isacl
  */
-public class Teste {
+public class Teste implements Serializable{
 
     private int idTeste;
     private float nota;

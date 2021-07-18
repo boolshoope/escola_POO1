@@ -5,11 +5,13 @@
  */
 package Objectos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author isacl
  */
-public class Turma {
+public class Turma implements Serializable{
 
     private int idTurma;
     private String nome;

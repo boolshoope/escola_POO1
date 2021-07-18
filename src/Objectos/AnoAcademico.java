@@ -5,11 +5,13 @@
  */
 package Objectos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author isacl
  */
-public class AnoAcademico {
+public class AnoAcademico implements Serializable{
     private int idAnoAcademico;
     private int ano;
     private int trimestre;

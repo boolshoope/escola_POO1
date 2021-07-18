@@ -5,13 +5,14 @@
  */
 package Objectos;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author isacl
  */
-public class Aluno extends Pessoa {
+public class Aluno extends Pessoa implements Serializable{
 
     private int nrEstudante;
     private Date dataNascimento;

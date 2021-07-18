@@ -5,11 +5,13 @@
  */
 package Objectos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author isacl
  */
-public class EncarregadoEducacao extends Pessoa{
+public class EncarregadoEducacao extends Pessoa implements Serializable{
     private String grauParentesco;
 
     public EncarregadoEducacao(String grauParentesco, int idPessoa, String pNome, String apelido, char sexo, String nrBI, String estadoCivil, String tel1, String tel2) {

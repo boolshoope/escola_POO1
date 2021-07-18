@@ -5,11 +5,13 @@
  */
 package Objectos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author isacl
  */
-public class Matricula {
+public class Matricula implements Serializable{
     private int nrEstudante;
     private int idTurma;
     private int idAnoAcademico;

@@ -5,12 +5,13 @@
  */
 package Objectos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author isacl
  */
-public class Classe {
-    //, 
+public class Classe implements Serializable{
     private int idClasse;
     private String nome;
 
