@@ -18,6 +18,8 @@ public class SistemaGestaoEscolar {
     /**
      * @param args the command line arguments
      */
+    static String nomeFich[] = {"aluno","professor"};
+    
     static Vector vecAnoAcademico, vecDisciplina, vecClasse, vecTurma;
 
     public static void main(String[] args) {
@@ -64,7 +66,7 @@ public class SistemaGestaoEscolar {
 
     // <editor-fold defaultstate="collapsed" desc="Adicionar">
     static void MatricularAluno() {
-
+        
     }
 
     static void AddPessoa(String aux) {
