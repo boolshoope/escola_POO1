@@ -7,6 +7,9 @@ package sistemagestaoescolar;
 
 import Objectos.*;
 import Validar.Validar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -18,7 +21,8 @@ public class SistemaGestaoEscolar {
     /**
      * @param args the command line arguments
      */
-    static String nomeFich[] = {"aluno","professor"};
+    public final static String nomeFich[] = {"aluno","professor"};
+    public static Vector aluno, professor, encarregado;
     
     static Vector vecAnoAcademico, vecDisciplina, vecClasse, vecTurma;
 
@@ -65,12 +69,95 @@ public class SistemaGestaoEscolar {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Adicionar">
-    static void MatricularAluno() {
+    static void matricularAluno() throws ParseException {
+        Pessoa x;
+        Date dt;
+        x = addPessoa();
+        int nrEstudante = (int) Validar.numero("Numero de Estudante: ",1111,9999);
+        String date = Validar.texto("Data de Nasciento(19/07/2021): ",10);
+        dt = new SimpleDateFormat("dd/mm/yyyy").parse(date);
+        int idEnc =(int) Validar.numero("ID encarregado: ", 1111, 9999);
         
+        // Caso o id do encarregado nao existir o aluno tem que registrar o encarregado.
+        if(!verificarEncarregado(idEnc)){
+            System.out.println("O encarregado ainda nao foi registrado!\nPor favor registe o encarregado...");
+            idEnc = registrarEnc();
+        }
+        
+        // Verificar se o aluno ja foi registado
+        Aluno tmp;
+        for(int i=0;i<aluno.size();i++) {
+            tmp = (Aluno) aluno.elementAt(i);
+            if(tmp.getNrEstudante() == nrEstudante){
+                System.out.println("O estudante ja foi matriculado!\nTente novamente");
+                return;
+            }
+        }
+        
+        Aluno al = new Aluno(x,nrEstudante,dt,idEnc);
+        
+        aluno.addElement(al);
+        aluno.trimToSize();
     }
-
-    static void AddPessoa(String aux) {
-
+    
+    static void registrarProf() {
+        Pessoa x;
+        x = addPessoa();
+        String grau = Validar.texto("Grau Academico: ",3);
+        Professor prof = new Professor(x,grau);
+        
+        Professor tmp;
+        for(int i=0;i<professor.size();i++){
+            tmp = (Professor) professor.elementAt(i);
+            if(prof.getIdPessoa() == tmp.getIdPessoa()){
+                System.out.println("O professor ja esta registrado!\n Tente novamente");
+                return;
+            }
+        }
+        
+        professor.addElement(prof);
+        professor.trimToSize();
+    }
+    
+    static int registrarEnc() {
+        Pessoa x;
+        x = addPessoa();
+        String parentesco = Validar.texto("Grau de Parentesco: ",3);
+        EncarregadoEducacao enc = new EncarregadoEducacao(x,parentesco);
+        
+        if(verificarEncarregado(enc.getIdPessoa())){
+            System.out.println("O encarregado ja esta registrado!\nTente novamente....");
+            return -1;
+        }
+        
+        encarregado.addElement(enc);
+        encarregado.trimToSize();
+        
+        return enc.getIdPessoa();
+    }
+    
+    private static boolean verificarEncarregado(int id){
+        EncarregadoEducacao tmp;
+        for(int i=0;i<encarregado.size();i++){
+           tmp =(EncarregadoEducacao) encarregado.elementAt(i);
+           if(id == tmp.getIdPessoa())
+               return true;
+        }
+        return false;
+    }
+    
+    static Pessoa addPessoa() {
+        int id =(int) Validar.numero("ID: ",1111, 9999);
+        String nome = Validar.texto("Nome: ", 4);
+        String apelido = Validar.texto("Apelido: ",4);
+        char sexo = Validar.texto("Sexo: ",1).charAt(0);
+        String nrBI = Validar.texto("BI: ", 4);
+        String estadoCivil = Validar.texto("Estado civil: ", 4);
+        String tell1 = Validar.texto("Telefone 1: ",9);
+        String tell2 = Validar.texto("Telefone 2: ",9);
+        
+        Pessoa x = new Pessoa(id,nome,apelido,sexo,nrBI,estadoCivil,tell1,tell2);
+        return x;
     }
 
     static void AddAnoAcademico() {

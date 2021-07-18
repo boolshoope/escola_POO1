@@ -6,6 +6,7 @@
 package sistemagestaoescolar;
 
 import Validar.Validar;
+import java.text.ParseException;
 
 /**
  *
@@ -15,7 +16,7 @@ public class Menu {
 
     private static int opEsc;
 
-    static void MainCase1() {
+    static void MainCase1() throws ParseException {
         System.out.println("Selecione a opção:");
         System.out.println("1. Matricular Aluno");
         System.out.println("2. Adicionar");
@@ -27,7 +28,7 @@ public class Menu {
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Matricular Aluno ****|");
-                SistemaGestaoEscolar.MatricularAluno();
+                SistemaGestaoEscolar.matricularAluno();
                 break;
             case 2:
                 System.out.println("\n|**** Adicionar ****|");
@@ -62,11 +63,11 @@ public class Menu {
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Adicionar Encarregado de Educacao ****|");
-                SistemaGestaoEscolar.AddPessoa("encarregadoEducacao");
+                //SistemaGestaoEscolar.AddPessoa("encarregadoEducacao");
                 break;
             case 2:
                 System.out.println("|**** Adicionar Professor ****|");
-                SistemaGestaoEscolar.AddPessoa("professor");
+                //SistemaGestaoEscolar.AddPessoa("professor");
                 break;
             case 3:
                 System.out.println("|**** Adicionar Ano Academico ****|");

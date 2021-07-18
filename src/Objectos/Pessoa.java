@@ -32,6 +32,17 @@ public class Pessoa implements Serializable{
         this.tel1 = tel1;
         this.tel2 = tel2;
     }
+    
+    public Pessoa(Pessoa ob){
+        this.idPessoa = ob.idPessoa;
+        this.pNome = ob.pNome;
+        this.apelido = ob.apelido;
+        this.sexo = ob.sexo;
+        this.nrBI = ob.nrBI;
+        this.estadoCivil = ob.estadoCivil;
+        this.tel1 = ob.tel1;
+        this.tel2 = ob.tel2;
+    }
 
     public int getIdPessoa() {
         return idPessoa;
