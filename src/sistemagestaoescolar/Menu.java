@@ -226,44 +226,39 @@ public class Menu {
         System.out.println("Selecione a opção:");
         System.out.println("1. Encarregado de Educacao");
         System.out.println("2. Professor");
-        System.out.println("3. Ano Academico");
-        System.out.println("4. Disciplina");
-        System.out.println("5. Classe");
-        System.out.println("6. Turma");
-        System.out.println("7. Aluno");
-        System.out.println("8. Voltar");
+        System.out.println("3. Disciplina");
+        System.out.println("4. Classe");
+        System.out.println("5. Turma");
+        System.out.println("6. Aluno");
+        System.out.println("7. Voltar");
 
-        opEsc = (int) Validar.numero("-> ", 1, 8);
+        opEsc = (int) Validar.numero("-> ", 1, 7);
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Remover Encarregado de Educacao ****|");
-                Remover.DelPessoa("encarregadoEducacao");
+                Remover.DelEncaregado();
                 break;
             case 2:
                 System.out.println("|**** Remover Professor ****|");
-                Remover.DelPessoa("professor");
+                Remover.DelProfessor();
                 break;
             case 3:
-                System.out.println("|**** Remover Ano Academico ****|");
-                Remover.DelAnoAcademico();
-                break;
-            case 4:
                 System.out.println("|**** Remover Disciplina ****|");
                 Remover.DelDisciplina();
                 break;
-            case 5:
+            case 4:
                 System.out.println("|**** Remover Classe ****|");
                 Remover.DelClasse();
                 break;
-            case 6:
+            case 5:
                 System.out.println("|**** Remover Turma ****|");
                 Remover.DelTurma();
                 break;
-            case 7:
+            case 6:
                 System.out.println("|**** Remover Aluno ****|");
-                Remover.DelPessoa("aluno");
+                Remover.DelAluno();
                 break;
-            case 8:
+            case 7:
                 break;
         }
     }
