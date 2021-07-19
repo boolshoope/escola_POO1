@@ -1,3 +1,0 @@
-6, 'Carlos', 'Bourdas', 'M', '50844411', 'Solteiro', '176 942 9616', '447 866 3299', 'Licenciado'
-7, 'Maria', 'Sinia', 'F', '04720382', 'Casado', '728 925 0500', '710 245 4452', 'Licenciado'
-8, 'Osvaldo', 'Pomori', 'M', '369871672', 'Casado', '262 593 8927', '999 337 2320', 'Mestrado'
