@@ -54,7 +54,8 @@ public class Adicionar {
         }
         
         // Criar uma matricula para o aluno
-        
+        System.out.println("Dados da Matricula do Estudante");
+        AddMatricula(nrEstudante);
 
         Aluno al = new Aluno(x, nrEstudante, dt, idEnc);
 

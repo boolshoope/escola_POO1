@@ -25,7 +25,6 @@ public class Menu {
     public static Vector vecAluno, vecProfessor, vecEncarregado, vecAnoAcademico, vecDisciplina, vecClasse, vecTurma, vecMatricula, vecClasseDiscProf, vecTeste;
 
     static void MainMenu() {
-        BD.LerFicheiro();
         InicializarVectores();
 
         int opEsc;

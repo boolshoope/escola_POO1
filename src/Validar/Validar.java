@@ -167,7 +167,7 @@ public class Validar {
         }
         return bool;
     }
-    
+
     public static boolean VerificarIdTurma(int id) {
         Turma turma;
         boolean bool = false;
@@ -182,7 +182,7 @@ public class Validar {
         }
         return bool;
     }
-    
+
     public static boolean VerificarIdAnoAcademico(int id) {
         AnoAcademico anoAcademico;
         boolean bool = false;
@@ -194,6 +194,36 @@ public class Validar {
         }
         if (!bool) {
             System.out.println("IdAnoAcademico nao encontrado, introduza novamente");
+        }
+        return bool;
+    }
+    
+    public static int VerificarAnoLectivo(int a) {
+        AnoAcademico anoAcademico;
+        int ano = -1;
+        for (int i = 0; i < vecAnoAcademico.size(); i++) {
+            anoAcademico = (AnoAcademico) vecAnoAcademico.elementAt(i);
+            if (a == anoAcademico.getAno()) {
+                ano = anoAcademico.getAno();
+            }
+        }
+        if (ano == -1) {
+            System.out.println("Ano Academico nao encontrado, introduza novamente");
+        }
+        return ano;
+    }
+
+    public static boolean VerificarNrEstudante(int id) {
+        Aluno aluno;
+        boolean bool = false;
+        for (int i = 0; i < vecAluno.size(); i++) {
+            aluno = (Aluno) vecAluno.elementAt(i);
+            if (id == aluno.getNrEstudante()) {
+                bool = true;
+            }
+        }
+        if (!bool) {
+            System.out.println("Aluno nao encontrado, introduza novamente");
         }
         return bool;
     }
