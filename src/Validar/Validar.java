@@ -11,10 +11,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
-import java.util.Vector;
 import static sistemagestaoescolar.Menu.vecAluno;
+import static sistemagestaoescolar.Menu.vecAnoAcademico;
+import static sistemagestaoescolar.Menu.vecClasse;
+import static sistemagestaoescolar.Menu.vecDisciplina;
 import static sistemagestaoescolar.Menu.vecEncarregado;
 import static sistemagestaoescolar.Menu.vecProfessor;
+import static sistemagestaoescolar.Menu.vecTurma;
 
 /**
  *
@@ -64,46 +67,35 @@ public class Validar {
         id[0] - idPessoa referente ao aluno
         id[1] - idPessoa referente ao encarregado
         id[2] - idPessoa referente ao professor
-        */
+         */
         int[] id = new int[3];
 
         if (vecAluno.isEmpty()) {
             id[0] = 0;
         } else {
             Aluno aluno = (Aluno) vecAluno.elementAt(vecAluno.size() - 1);
-            id[0] = aluno.getIdPessoa() + 1;
+            id[0] = aluno.getIdPessoa();
         }
-        
+
         if (vecEncarregado.isEmpty()) {
             id[1] = 0;
         } else {
             EncarregadoEducacao encEd = (EncarregadoEducacao) vecEncarregado.elementAt(vecEncarregado.size() - 1);
-            id[1] = encEd.getIdPessoa() + 1;
+            id[1] = encEd.getIdPessoa();
         }
-        
+
         if (vecProfessor.isEmpty()) {
             id[2] = 0;
         } else {
             Professor prof = (Professor) vecProfessor.elementAt(vecProfessor.size() - 1);
-            id[2] = prof.getIdPessoa() + 1;
+            id[2] = prof.getIdPessoa();
         }
-        
+
         //Serve para saber qual eh o maior numero no array id
         IntSummaryStatistics stat = Arrays.stream(id).summaryStatistics();
         int max = stat.getMax() + 1;
 
         return max;
-    }
-
-    public static int GetIdEncarregado() {
-        int idEnc;
-        if (vecEncarregado.isEmpty()) {
-            return 0;
-        }
-        EncarregadoEducacao encEd = (EncarregadoEducacao) vecEncarregado.elementAt(vecEncarregado.size() - 1);
-        idEnc = encEd.getIdPessoa() + 1;
-
-        return idEnc;
     }
 
     public static int GetNrEstudante() {
@@ -117,4 +109,62 @@ public class Validar {
         return nrEstudante;
     }
 
+    public static int GetIdAnoAcademico() {
+        int idAnoAcademico;
+        if (vecAnoAcademico.isEmpty()) {
+            return 1;
+        }
+        AnoAcademico ano = (AnoAcademico) vecAnoAcademico.elementAt(vecAnoAcademico.size() - 1);
+        idAnoAcademico = ano.getIdAnoAcademico() + 1;
+
+        return idAnoAcademico;
+    }
+
+    public static int GetIdDisciplina() {
+        int idDisciplina;
+        if (vecDisciplina.isEmpty()) {
+            return 1;
+        }
+        Disciplina disc = (Disciplina) vecDisciplina.elementAt(vecDisciplina.size() - 1);
+        idDisciplina = disc.getIdDisciplina() + 1;
+
+        return idDisciplina;
+    }
+
+    public static int GetIdClasse() {
+        int idClasse;
+        if (vecClasse.isEmpty()) {
+            return 1;
+        }
+        Classe classe = (Classe) vecAnoAcademico.elementAt(vecAnoAcademico.size() - 1);
+        idClasse = classe.getIdClasse() + 1;
+
+        return idClasse;
+    }
+
+    public static int GetIdTurma() {
+        int idTurma;
+        if (vecTurma.isEmpty()) {
+            return 1;
+        }
+        Turma turma = (Turma) vecTurma.elementAt(vecTurma.size() - 1);
+        idTurma = turma.getIdTurma() + 1;
+
+        return idTurma;
+    }
+
+    public static boolean VerificarIDClasse(int id) {
+        Classe classe;
+        boolean bool = false;
+        for (int i = 0; i < vecClasse.size(); i++) {
+            classe = (Classe) vecClasse.elementAt(i);
+            if (id == classe.getIdClasse()) {
+                bool = true;
+            }
+        }
+        if (!bool) {
+            System.out.println("Id Classe nao encontrado, introduza novamente");
+        }
+        return bool;
+    }
 }

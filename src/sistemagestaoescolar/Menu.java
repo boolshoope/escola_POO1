@@ -138,7 +138,7 @@ public class Menu {
                 break;
             case 2:
                 System.out.println("|**** Adicionar Professor ****|");
-                //SistemaGestaoEscolar.AddPessoa("professor");
+                Adicionar.AddProfessor();
                 break;
             case 3:
                 System.out.println("|**** Adicionar Ano Academico ****|");
