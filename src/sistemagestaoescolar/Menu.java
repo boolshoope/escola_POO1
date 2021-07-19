@@ -79,7 +79,6 @@ public class Menu {
         vecMatricula = BD.LerDadosDoFichObj("Matricula");
         vecTeste = BD.LerDadosDoFichObj("Teste");
         vecClasseDiscProf = BD.LerDadosDoFichObj("ClasseDiscProf");
-
         
         //BD.GravarFichObj(new Vector(), "Matricula");
     }
