@@ -14,6 +14,7 @@ import Objectos.EncarregadoEducacao;
 import Objectos.Matricula;
 import Objectos.Pessoa;
 import Objectos.Professor;
+import Objectos.Teste;
 import Objectos.Turma;
 import Validar.Validar;
 import java.text.ParseException;
@@ -27,6 +28,7 @@ import static sistemagestaoescolar.Menu.vecClasseDiscProf;
 import static sistemagestaoescolar.Menu.vecDisciplina;
 import static sistemagestaoescolar.Menu.vecProfessor;
 import static sistemagestaoescolar.Menu.vecEncarregado;
+import static sistemagestaoescolar.Menu.vecTeste;
 import static sistemagestaoescolar.Menu.vecTurma;
 
 /**
@@ -54,7 +56,7 @@ public class Adicionar {
             System.out.println("O encarregado ainda nao foi registrado!\nPor favor registe o encarregado...");
             idEnc = registrarEnc();
         }
-        
+
         // Criar uma matricula para o aluno
         System.out.println("Dados da Matricula do Estudante");
         AddMatricula(nrEstudante);
@@ -151,23 +153,23 @@ public class Adicionar {
         String nome = Validar.texto("Nome: ", 1);
         int maxAlunos = (int) Validar.numero("Numero maximo de alunos: ", 10, 99);
         int idClasse;
-        do{
+        do {
             idClasse = (int) Validar.numero("Id Classe: ", 1, 9999);
-        }while(!Validar.VerificarIDClasse(idClasse));
+        } while (!Validar.VerificarIDClasse(idClasse));
         Turma turma = new Turma(id, nome, maxAlunos, idClasse);
         vecTurma.addElement(turma);
         vecTurma.trimToSize();
     }
-    
+
     public static void AddMatricula(int nrEst) {
         int idTurma, idAnoAcademico;
-        do{
+        do {
             idTurma = (int) Validar.numero("Id Turma: ", 1, 9999);
-        }while(!Validar.VerificarIdTurma(idTurma));
-        
-        do{
+        } while (!Validar.VerificarIdTurma(idTurma));
+
+        do {
             idAnoAcademico = (int) Validar.numero("Id AnoAcademico: ", 1, 9999);
-        }while(!Validar.VerificarIdAnoAcademico(idAnoAcademico));
+        } while (!Validar.VerificarIdAnoAcademico(idAnoAcademico));
 
         Matricula mat = new Matricula(nrEst, idTurma, idAnoAcademico);
         vecMatricula.addElement(mat);
@@ -177,33 +179,60 @@ public class Adicionar {
     // <editor-fold defaultstate="collapsed" desc="Renovar Matricula/Alocar">
     public static void RenovarMatricula() {
         int nrEst;
-        do{
+        do {
             nrEst = (int) Validar.numero("Nr Estudante: ", 100, 9999);
-        }while(!Validar.VerificarNrEstudante(nrEst));
+        } while (!Validar.VerificarNrEstudante(nrEst));
         AddMatricula(nrEst);
     }
 
     public static void Alocar() {
         int idProf, idClasse, idDisciplina;
-        do{
+        do {
             idProf = (int) Validar.numero("Id Professor: ", 1, 9999);
-        }while(!Validar.VerificarIdProfessor(idProf));
-        
-        do{
+        } while (!Validar.VerificarIdProfessor(idProf));
+
+        do {
             idClasse = (int) Validar.numero("Id Classe: ", 1, 9999);
-        }while(!Validar.VerificarIDClasse(idClasse));
-        
-        do{
+        } while (!Validar.VerificarIDClasse(idClasse));
+
+        do {
             idDisciplina = (int) Validar.numero("Id Classe: ", 1, 9999);
-        }while(!Validar.VerificarIdDisciplina(idDisciplina));
-        
+        } while (!Validar.VerificarIdDisciplina(idDisciplina));
+
         ClasseDiscProf cdp = new ClasseDiscProf(idClasse, idDisciplina, idProf);
         vecClasseDiscProf.addElement(cdp);
         vecClasseDiscProf.trimToSize();
     }
-    
-    public static void AddTeste() {
 
+    public static void AddTeste() {
+        Teste test;
+        int idTeste = Validar.GetIdTeste();
+        float nota = (float) Validar.numero("Nota: ", 0, 20);
+        String tipo = Validar.texto("Tipo: ", 2);
+        String date = Validar.texto("Data de Nasciento(19/07/2021): ", 10);
+        Date dataRealizacao = new Date();
+        try {
+            dataRealizacao = new SimpleDateFormat("dd/mm/yyyy").parse(date);
+        } catch (ParseException ex) {
+            System.out.println(ex.toString());
+        }
+        float peso = (float) Validar.numero("Peso: ", 0, 20);
+        String comentario = Validar.texto("Comentario: ", 2);
+        
+        int idAnoAcademico, idDisciplina, nrEstudante;
+        do {
+            idAnoAcademico = (int) Validar.numero("Id Ano Academico: ", 1, 9999);
+        } while (!Validar.VerificarIdProfessor(idAnoAcademico));
+        do {
+            idDisciplina = (int) Validar.numero("Id Disciplina: ", 1, 9999);
+        } while (!Validar.VerificarIdProfessor(idDisciplina));
+        do {
+            nrEstudante = (int) Validar.numero("Id Estudante: ", 1, 9999);
+        } while (!Validar.VerificarIdProfessor(nrEstudante));
+        
+        test = new Teste(idTeste, nota, tipo, dataRealizacao, peso, comentario, idAnoAcademico, idDisciplina, nrEstudante);
+        vecTeste.addElement(test);
+        vecTeste.trimToSize();
     }
     // </editor-fold>
 

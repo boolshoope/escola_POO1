@@ -17,6 +17,7 @@ import static sistemagestaoescolar.Menu.vecClasse;
 import static sistemagestaoescolar.Menu.vecDisciplina;
 import static sistemagestaoescolar.Menu.vecEncarregado;
 import static sistemagestaoescolar.Menu.vecProfessor;
+import static sistemagestaoescolar.Menu.vecTeste;
 import static sistemagestaoescolar.Menu.vecTurma;
 
 /**
@@ -131,6 +132,17 @@ public class Validar {
         return idDisciplina;
     }
 
+    public static int GetIdTeste() {
+        int idTeste;
+        if (vecTeste.isEmpty()) {
+            return 1;
+        }
+        Teste teste = (Teste) vecTeste.elementAt(vecTeste.size() - 1);
+        idTeste = teste.getIdTeste() + 1;
+
+        return idTeste;
+    }
+
     public static int GetIdClasse() {
         int idClasse;
         if (vecClasse.isEmpty()) {
@@ -197,7 +209,7 @@ public class Validar {
         }
         return bool;
     }
-    
+
     public static int VerificarAnoLectivo(int a) {
         AnoAcademico anoAcademico;
         int ano = -1;
@@ -212,7 +224,7 @@ public class Validar {
         }
         return ano;
     }
-    
+
     public static int VerificarAnoLectivoT(int a) {
         AnoAcademico anoAcademico;
         int ano = -1;
@@ -227,7 +239,7 @@ public class Validar {
         }
         return ano;
     }
-    
+
     public static int VerificarTrimestre(int a, int b) {
         AnoAcademico anoAcademico;
         int trimestre = -1;
@@ -257,7 +269,7 @@ public class Validar {
         }
         return bool;
     }
-    
+
     public static boolean VerificarIdProfessor(int id) {
         Professor prof;
         boolean bool = false;
@@ -272,7 +284,7 @@ public class Validar {
         }
         return bool;
     }
-    
+
     public static boolean VerificarIdDisciplina(int id) {
         Disciplina disc;
         boolean bool = false;
