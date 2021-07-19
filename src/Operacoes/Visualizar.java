@@ -13,6 +13,7 @@ import static sistemagestaoescolar.Menu.vecAnoAcademico;
 import static sistemagestaoescolar.Menu.vecDisciplina;
 import static sistemagestaoescolar.Menu.vecClasse;
 import static sistemagestaoescolar.Menu.vecMatricula;
+import static sistemagestaoescolar.Menu.vecTeste;
 import static sistemagestaoescolar.Menu.vecTurma;
 
 /**
@@ -27,18 +28,23 @@ public class Visualizar {
         AnoAcademico ano;
         Matricula mat;
         Aluno aluno;
+        Teste teste;
+        Disciplina disc;
+
+        int idTurma = 1, idAnoAcademico = 1;
 
         for (Object al : vecAluno) {
             aluno = (Aluno) al;
-            for (Object t : vecTurma) {
-                turma = (Turma) t;
-                for (Object a : vecAnoAcademico) {
-                    ano = (AnoAcademico) a;
-                    for (Object m: vecMatricula){
-                        mat = (Matricula) m;
-                        
-                        if (aluno.getNrEstudante() == mat.getNrEstudante() && mat.getIdTurma() == 1 && mat.getIdAnoAcademico() == 1) {
-                            System.out.println(aluno.getpNome());
+            for (Object m : vecMatricula) {
+                mat = (Matricula) m;
+                for (Object t : vecTeste) {
+                    teste = (Teste) t;
+                    for (Object d : vecDisciplina) {
+                        disc = (Disciplina) d;
+                        if (aluno.getNrEstudante() == mat.getNrEstudante() && teste.getIdDisciplina() == disc.getIdDisciplina()
+                                && teste.getNrEstudante() == aluno.getNrEstudante() && teste.getIdAnoAcademico() == idAnoAcademico
+                                && mat.getIdTurma() == idTurma && mat.getIdAnoAcademico() == idAnoAcademico) {
+                            System.out.println(aluno.getpNome() + "  " + teste.getNota() + " " + disc.getNome());
                         }
                     }
                 }

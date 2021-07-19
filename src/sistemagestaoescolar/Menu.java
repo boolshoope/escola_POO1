@@ -22,9 +22,10 @@ public class Menu {
     private static int opEsc;
 
     public final static String nomeFich[] = {"aluno", "professor"};
-    public static Vector vecAluno, vecProfessor, vecEncarregado, vecAnoAcademico, vecDisciplina, vecClasse, vecTurma, vecMatricula, vecClasseDiscProf;
+    public static Vector vecAluno, vecProfessor, vecEncarregado, vecAnoAcademico, vecDisciplina, vecClasse, vecTurma, vecMatricula, vecClasseDiscProf, vecTeste;
 
     static void MainMenu() {
+        BD.LerFicheiro();
         InicializarVectores();
 
         int opEsc;
@@ -76,7 +77,11 @@ public class Menu {
         vecDisciplina = BD.LerDadosDoFichObj("Disciplina");
         vecClasse = BD.LerDadosDoFichObj("Classe");
         vecTurma = BD.LerDadosDoFichObj("Turma");
+        vecMatricula = BD.LerDadosDoFichObj("Matricula");
+        vecTeste = BD.LerDadosDoFichObj("Teste");
+        vecClasseDiscProf = BD.LerDadosDoFichObj("ClasseDiscProf");
 
+        
         //BD.GravarFichObj(new Vector(), "Matricula");
     }
 
@@ -88,6 +93,9 @@ public class Menu {
         BD.GravarFichObj(vecDisciplina, "Disciplina");
         BD.GravarFichObj(vecClasse, "Classe");
         BD.GravarFichObj(vecTurma, "Turma");
+        BD.GravarFichObj(vecMatricula, "Matricula");
+        BD.GravarFichObj(vecTeste, "Teste");
+        BD.GravarFichObj(vecClasseDiscProf, "ClasseDiscProf");
     }
 
     static void MainCase1() {
