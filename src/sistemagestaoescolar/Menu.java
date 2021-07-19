@@ -47,7 +47,7 @@ public class Menu {
                     MainCase1();
                     break;
                 case 2:
-                    System.out.println("\n|**** Alocar/Renovação de Matricula ****|");
+                    System.out.println("\n|**** Registar Testes/Alocar/Renovação de Matricula ****|");
                     MainCase2();
                     break;
                 case 3:
@@ -262,14 +262,15 @@ public class Menu {
     }
     // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="MainCase2 - Matricular Aluno/Alocar">
+    // <editor-fold defaultstate="collapsed" desc="MainCase2 - Matricular Aluno/Alocar/Testes">
     static void MainCase2() {
         System.out.println("Selecione a opção:");
         System.out.println("1. Renovar matricula de um aluno");
         System.out.println("2. Alocar um professor a uma disciplina e a disciplina em uma classe");
-        System.out.println("3. Voltar");
+        System.out.println("3. Adicionar um teste");
+        System.out.println("4. Voltar");
 
-        opEsc = (int) Validar.numero("-> ", 1, 3);
+        opEsc = (int) Validar.numero("-> ", 1, 4);
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Renovar matricula de um aluno ****|");
@@ -280,7 +281,8 @@ public class Menu {
                 Adicionar.Alocar();
                 break;
             case 3:
-                SistemaGestaoEscolar.main(null);
+                System.out.println("\n|**** Adicionar um teste ****|");
+                Adicionar.AddTeste();
                 break;
         }
     }
@@ -309,7 +311,6 @@ public class Menu {
                 Visualizar.VisualizarNotasAlunoTrimestre();
                 break;
             case 4:
-                SistemaGestaoEscolar.main(null);
                 break;
         }
     }

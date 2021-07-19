@@ -213,13 +213,28 @@ public class Validar {
         return ano;
     }
     
+    public static int VerificarAnoLectivoT(int a) {
+        AnoAcademico anoAcademico;
+        int ano = -1;
+        for (int i = 0; i < vecAnoAcademico.size(); i++) {
+            anoAcademico = (AnoAcademico) vecAnoAcademico.elementAt(i);
+            if (a == anoAcademico.getAno()) {
+                ano = anoAcademico.getAno();
+            }
+        }
+        if (ano == -1) {
+            System.out.println("Ano Lectivo nao encontrado, introduza novamente");
+        }
+        return ano;
+    }
+    
     public static int VerificarTrimestre(int a, int b) {
         AnoAcademico anoAcademico;
         int trimestre = -1;
         for (int i = 0; i < vecAnoAcademico.size(); i++) {
             anoAcademico = (AnoAcademico) vecAnoAcademico.elementAt(i);
-            if (a == anoAcademico.getTrimestre() && b == anoAcademico.getIdAnoAcademico()) {
-                trimestre = anoAcademico.getTrimestre();
+            if (a == anoAcademico.getTrimestre() && b == anoAcademico.getAno()) {
+                trimestre = anoAcademico.getIdAnoAcademico();
             }
         }
         if (trimestre == -1) {
@@ -239,6 +254,36 @@ public class Validar {
         }
         if (!bool) {
             System.out.println("Aluno nao encontrado, introduza novamente");
+        }
+        return bool;
+    }
+    
+    public static boolean VerificarIdProfessor(int id) {
+        Professor prof;
+        boolean bool = false;
+        for (int i = 0; i < vecProfessor.size(); i++) {
+            prof = (Professor) vecProfessor.elementAt(i);
+            if (id == prof.getIdPessoa()) {
+                bool = true;
+            }
+        }
+        if (!bool) {
+            System.out.println("Professor nao encontrado, introduza novamente");
+        }
+        return bool;
+    }
+    
+    public static boolean VerificarIdDisciplina(int id) {
+        Disciplina disc;
+        boolean bool = false;
+        for (int i = 0; i < vecDisciplina.size(); i++) {
+            disc = (Disciplina) vecDisciplina.elementAt(i);
+            if (id == disc.getIdDisciplina()) {
+                bool = true;
+            }
+        }
+        if (!bool) {
+            System.out.println("Disciplina nao encontrada, introduza novamente");
         }
         return bool;
     }

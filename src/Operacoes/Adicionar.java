@@ -8,6 +8,7 @@ package Operacoes;
 import Objectos.Aluno;
 import Objectos.AnoAcademico;
 import Objectos.Classe;
+import Objectos.ClasseDiscProf;
 import Objectos.Disciplina;
 import Objectos.EncarregadoEducacao;
 import Objectos.Matricula;
@@ -22,6 +23,7 @@ import static sistemagestaoescolar.Menu.vecMatricula;
 import static sistemagestaoescolar.Menu.vecAluno;
 import static sistemagestaoescolar.Menu.vecAnoAcademico;
 import static sistemagestaoescolar.Menu.vecClasse;
+import static sistemagestaoescolar.Menu.vecClasseDiscProf;
 import static sistemagestaoescolar.Menu.vecDisciplina;
 import static sistemagestaoescolar.Menu.vecProfessor;
 import static sistemagestaoescolar.Menu.vecEncarregado;
@@ -158,8 +160,6 @@ public class Adicionar {
     }
     
     public static void AddMatricula(int nrEst) {
-        
-        //    public Matricula(int nrEstudante, int idTurma, int idAnoAcademico) {
         int idTurma, idAnoAcademico;
         do{
             idTurma = (int) Validar.numero("Id Turma: ", 1, 9999);
@@ -176,10 +176,33 @@ public class Adicionar {
 
     // <editor-fold defaultstate="collapsed" desc="Renovar Matricula/Alocar">
     public static void RenovarMatricula() {
-        
+        int nrEst;
+        do{
+            nrEst = (int) Validar.numero("Nr Estudante: ", 100, 9999);
+        }while(!Validar.VerificarNrEstudante(nrEst));
+        AddMatricula(nrEst);
     }
 
     public static void Alocar() {
+        int idProf, idClasse, idDisciplina;
+        do{
+            idProf = (int) Validar.numero("Id Professor: ", 1, 9999);
+        }while(!Validar.VerificarIdProfessor(idProf));
+        
+        do{
+            idClasse = (int) Validar.numero("Id Classe: ", 1, 9999);
+        }while(!Validar.VerificarIDClasse(idClasse));
+        
+        do{
+            idDisciplina = (int) Validar.numero("Id Classe: ", 1, 9999);
+        }while(!Validar.VerificarIdDisciplina(idDisciplina));
+        
+        ClasseDiscProf cdp = new ClasseDiscProf(idClasse, idDisciplina, idProf);
+        vecClasseDiscProf.addElement(cdp);
+        vecClasseDiscProf.trimToSize();
+    }
+    
+    public static void AddTeste() {
 
     }
     // </editor-fold>

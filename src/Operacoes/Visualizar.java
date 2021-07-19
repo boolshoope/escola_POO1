@@ -75,16 +75,16 @@ public class Visualizar {
         int[][] medTrim;
         int media[];
         String format;
-        
+
         do {
             nrEstudante = (int) Validar.numero("Nr Estudante: ", 100, 9999);
         } while (!Validar.VerificarNrEstudante(nrEstudante));
-        
+
         do {
             ano = (int) Validar.numero("Ano Lectivo: ", 2000, 3000);
         } while (Validar.VerificarAnoLectivo(ano) == -1);
         idAno = Validar.VerificarAnoLectivo(ano);
-        
+
         //Obter o idTurma
         for (Object m : vecMatricula) {
             mat = (Matricula) m;
@@ -100,7 +100,7 @@ public class Visualizar {
                 idClasse = turma.getIdClasse();
             }
         }
-        
+
         //obter as disciplinas que o aluno fez no ano academico
         for (Object t : vecClasseDiscProf) {
             cdp = (ClasseDiscProf) t;
@@ -108,7 +108,9 @@ public class Visualizar {
                 disc = (Disciplina) d;
                 if (cdp.getIdClasse() == idClasse && cdp.getIdDisciplina() == disc.getIdDisciplina()) {
                     vecDiscCod.addElement(cdp.getIdDisciplina());
+                    vecDiscCod.trimToSize();
                     vecDiscNome.addElement(disc.getNome());
+                    vecDiscNome.trimToSize();
                     countDisc++;
                 }
             }
@@ -152,15 +154,14 @@ public class Visualizar {
     }
 
     public static void VisualizarNotasAlunoTrimestre() {
-        /*
         Matricula mat;
         Teste teste;
-        AnoAcademico anoAc;
+        Aluno aluno;
         Disciplina disc;
         boolean ctrl = true;
         String format = "%-20s %-20s";
 
-        int nrEst, idAnoAcademico, ano, trimestre, idTrimestre;
+        int nrEst, ano, trimestre, idTrimestre;
 
         do {
             nrEst = (int) Validar.numero("Nr Estudante: ", 100, 9999);
@@ -168,39 +169,38 @@ public class Visualizar {
 
         do {
             ano = (int) Validar.numero("Ano Lectivo: ", 2000, 3000);
-        } while (Validar.VerificarAnoLectivo(ano) == -1);
-        idAnoAcademico = Validar.VerificarAnoLectivo(ano);
-        
+        } while (Validar.VerificarAnoLectivoT(ano) == -1);
+
         do {
             trimestre = (int) Validar.numero("Trimestre: ", 1, 3);
-        } while (Validar.VerificarTrimestre(ano, idAnoAcademico) == -1);
-        idTrimestre = Validar.VerificarTrimestre(ano, idAnoAcademico);
+        } while (Validar.VerificarTrimestre(trimestre, ano) == -1);
+        idTrimestre = Validar.VerificarTrimestre(trimestre, ano);
 
-        for (Object al : vecAnoAcademico) {
-            anoAc = (Aluno) al;
+        for (Object al : vecAluno) {
+            aluno = (Aluno) al;
             for (Object m : vecMatricula) {
                 mat = (Matricula) m;
                 for (Object t : vecTeste) {
                     teste = (Teste) t;
                     for (Object d : vecDisciplina) {
                         disc = (Disciplina) d;
-                        if (aluno.getNrEstudante() == mat.getNrEstudante() && teste.getIdDisciplina() == disc.getIdDisciplina()
-                                && teste.getNrEstudante() == aluno.getNrEstudante() && teste.getIdAnoAcademico() == idAnoAcademico
-                                && mat.getIdTurma() == nrEst && mat.getIdAnoAcademico() == idAnoAcademico) {
+                        if (nrEst == mat.getNrEstudante() && teste.getIdDisciplina() == disc.getIdDisciplina() && teste.getNrEstudante() == nrEst
+                                && teste.getIdAnoAcademico() == idTrimestre && mat.getIdAnoAcademico() == idTrimestre
+                                && aluno.getNrEstudante() == nrEst) {
 
                             if (ctrl) {
+                                System.out.println("Nome: " + aluno.getpNome() + " " + aluno.getApelido());
                                 format = "%-20s %-15s %-15s %-15s %-15s";
-                                System.out.println(String.format(format, "Nome do Aluno", "Nota", "Disciplina", "Tipo do teste", "Peso"));
+                                System.out.println(String.format(format, "Disciplina", "Nota", "Tipo do teste", "Peso", "Trimestre"));
                                 ctrl = false;
                             }
-                            System.out.println(String.format(format, aluno.getpNome() + " " + aluno.getApelido(), teste.getNota(), disc.getNome(),
-                                    teste.getTipo(), teste.getPeso() + "%"));
+                            System.out.println(String.format(format, disc.getNome(), teste.getNota(), teste.getTipo(),
+                                    teste.getPeso() + "%", trimestre));
                         }
                     }
                 }
             }
         }
-        */
     }
     // </editor-fold>
 
