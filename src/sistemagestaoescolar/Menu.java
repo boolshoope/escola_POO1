@@ -34,7 +34,7 @@ public class Menu {
             System.out.println("|*********** MENU PRINCIPAL ***********|");
             System.out.println("Selecione a opção:");
             System.out.println("1. Operações básicas");
-            System.out.println("2. Alocar/Renovação de Matricula");
+            System.out.println("2. Registar Testes/Alocar/Renovação de Matricula");
             System.out.println("3. Visualizar notas dos alunos");
             System.out.println("4. Visualizar outros dados");
             System.out.println("5. Sair");
@@ -128,42 +128,34 @@ public class Menu {
     // <editor-fold defaultstate="collapsed" desc="MainCase12 - Adicionar">
     static void MainCase12() {
         System.out.println("Selecione a opção:");
-        System.out.println("1. Encarregado de Educacao");
-        System.out.println("2. Professor");
-        System.out.println("3. Ano Academico");
-        System.out.println("4. Disciplina");
-        System.out.println("5. Classe");
-        System.out.println("6. Turma");
-        System.out.println("7. Voltar");
+        System.out.println("1. Professor");
+        System.out.println("2. Ano Academico");
+        System.out.println("3. Disciplina");
+        System.out.println("4. Classe");
+        System.out.println("5. Turma");
+        System.out.println("6. Voltar");
 
-        opEsc = (int) Validar.numero("-> ", 1, 7);
+        opEsc = (int) Validar.numero("-> ", 1, 6);
         switch (opEsc) {
             case 1:
-                System.out.println("|**** Adicionar Encarregado de Educacao ****|");
-                //SistemaGestaoEscolar.AddPessoa("encarregadoEducacao");
-                break;
-            case 2:
                 System.out.println("|**** Adicionar Professor ****|");
                 Adicionar.AddProfessor();
                 break;
-            case 3:
+            case 2:
                 System.out.println("|**** Adicionar Ano Academico ****|");
                 Adicionar.AddAnoAcademico();
                 break;
-            case 4:
+            case 3:
                 System.out.println("|**** Adicionar Disciplina ****|");
                 Adicionar.AddDisciplina();
                 break;
-            case 5:
+            case 4:
                 System.out.println("|**** Adicionar Classe ****|");
                 Adicionar.AddClasse();
                 break;
-            case 6:
+            case 5:
                 System.out.println("|**** Adicionar Turma ****|");
                 Adicionar.AddTurma();
-                break;
-            case 7:
-                SistemaGestaoEscolar.main(null);
                 break;
         }
     }
