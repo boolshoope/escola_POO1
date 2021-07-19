@@ -10,6 +10,7 @@ import Objectos.AnoAcademico;
 import Objectos.Classe;
 import Objectos.Disciplina;
 import Objectos.EncarregadoEducacao;
+import Objectos.Matricula;
 import Objectos.Pessoa;
 import Objectos.Professor;
 import Objectos.Turma;
@@ -17,6 +18,7 @@ import Validar.Validar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import static sistemagestaoescolar.Menu.vecMatricula;
 import static sistemagestaoescolar.Menu.vecAluno;
 import static sistemagestaoescolar.Menu.vecAnoAcademico;
 import static sistemagestaoescolar.Menu.vecClasse;
@@ -50,6 +52,9 @@ public class Adicionar {
             System.out.println("O encarregado ainda nao foi registrado!\nPor favor registe o encarregado...");
             idEnc = registrarEnc();
         }
+        
+        // Criar uma matricula para o aluno
+        
 
         Aluno al = new Aluno(x, nrEstudante, dt, idEnc);
 
@@ -150,10 +155,27 @@ public class Adicionar {
         vecTurma.addElement(turma);
         vecTurma.trimToSize();
     }
+    
+    public static void AddMatricula(int nrEst) {
+        
+        //    public Matricula(int nrEstudante, int idTurma, int idAnoAcademico) {
+        int idTurma, idAnoAcademico;
+        do{
+            idTurma = (int) Validar.numero("Id Turma: ", 1, 9999);
+        }while(!Validar.VerificarIdTurma(idTurma));
+        
+        do{
+            idAnoAcademico = (int) Validar.numero("Id AnoAcademico: ", 1, 9999);
+        }while(!Validar.VerificarIdAnoAcademico(idAnoAcademico));
+
+        Matricula mat = new Matricula(nrEst, idTurma, idAnoAcademico);
+        vecMatricula.addElement(mat);
+        vecMatricula.trimToSize();
+    }
 
     // <editor-fold defaultstate="collapsed" desc="Renovar Matricula/Alocar">
     public static void RenovarMatricula() {
-
+        
     }
 
     public static void Alocar() {

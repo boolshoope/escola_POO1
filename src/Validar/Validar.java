@@ -167,4 +167,34 @@ public class Validar {
         }
         return bool;
     }
+    
+    public static boolean VerificarIdTurma(int id) {
+        Turma turma;
+        boolean bool = false;
+        for (int i = 0; i < vecTurma.size(); i++) {
+            turma = (Turma) vecTurma.elementAt(i);
+            if (id == turma.getIdTurma()) {
+                bool = true;
+            }
+        }
+        if (!bool) {
+            System.out.println("Id turma nao encontrado, introduza novamente");
+        }
+        return bool;
+    }
+    
+    public static boolean VerificarIdAnoAcademico(int id) {
+        AnoAcademico anoAcademico;
+        boolean bool = false;
+        for (int i = 0; i < vecAnoAcademico.size(); i++) {
+            anoAcademico = (AnoAcademico) vecAnoAcademico.elementAt(i);
+            if (id == anoAcademico.getIdAnoAcademico()) {
+                bool = true;
+            }
+        }
+        if (!bool) {
+            System.out.println("IdAnoAcademico nao encontrado, introduza novamente");
+        }
+        return bool;
+    }
 }
