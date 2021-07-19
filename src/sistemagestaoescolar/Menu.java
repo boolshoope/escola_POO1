@@ -187,11 +187,11 @@ public class Menu {
         switch (opEsc) {
             case 1:
                 System.out.println("|**** Editar Encarregado de Educacao ****|");
-                Editar.EditPessoa("encarregadoEducacao");
+                Editar.EditEncarregado();
                 break;
             case 2:
                 System.out.println("|**** Editar Professor ****|");
-                Editar.EditPessoa("professor");
+                Editar.EditProfessor();
                 break;
             case 3:
                 System.out.println("|**** Editar Ano Academico ****|");
@@ -211,7 +211,7 @@ public class Menu {
                 break;
             case 7:
                 System.out.println("|**** Editar Aluno ****|");
-                Editar.EditPessoa("aluno");
+                Editar.EditAluno();
                 break;
             case 8:
                 break;

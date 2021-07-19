@@ -43,6 +43,16 @@ public class Pessoa implements Serializable{
         this.tel1 = ob.tel1;
         this.tel2 = ob.tel2;
     }
+    
+    public void update(Pessoa ob) {
+        this.pNome = ob.pNome;
+        this.apelido = ob.apelido;
+        this.sexo = ob.sexo;
+        this.nrBI = ob.nrBI;
+        this.estadoCivil = ob.estadoCivil;
+        this.tel1 = ob.tel1;
+        this.tel2 = ob.tel2;
+    }
 
     public int getIdPessoa() {
         return idPessoa;

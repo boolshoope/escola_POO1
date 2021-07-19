@@ -32,6 +32,11 @@ public class Aluno extends Pessoa implements Serializable{
         this.dataNascimento = dataNascimento;
         this.idEncarregadoEducacao = idEncarregadoEducacao;
     }
+    
+    public void update(Pessoa x, Date dataNascimento) {
+        update(x);
+        this.dataNascimento = dataNascimento;
+    }
 
     public int getNrEstudante() {
         return nrEstudante;

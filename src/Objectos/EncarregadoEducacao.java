@@ -23,6 +23,11 @@ public class EncarregadoEducacao extends Pessoa implements Serializable{
         super(x);
         this.grauParentesco = grauParentesco;
     }
+    
+    public void update(Pessoa x, String grauParentesco) {
+        update(x);
+        this.grauParentesco = grauParentesco;
+    }
 
     public String getGrauParentesco() {
         return grauParentesco;
