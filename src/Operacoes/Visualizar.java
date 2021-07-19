@@ -12,6 +12,7 @@ import static sistemagestaoescolar.Menu.vecEncarregado;
 import static sistemagestaoescolar.Menu.vecAnoAcademico;
 import static sistemagestaoescolar.Menu.vecDisciplina;
 import static sistemagestaoescolar.Menu.vecClasse;
+import static sistemagestaoescolar.Menu.vecMatricula;
 import static sistemagestaoescolar.Menu.vecTurma;
 
 /**
@@ -22,7 +23,27 @@ public class Visualizar {
 
     // <editor-fold defaultstate="collapsed" desc="Visualizar Notas Alunos">
     public static void VisualizarNotasTurmaAnoAcademico() {
+        Turma turma;
+        AnoAcademico ano;
+        Matricula mat;
+        Aluno aluno;
 
+        for (Object al : vecAluno) {
+            aluno = (Aluno) al;
+            for (Object t : vecTurma) {
+                turma = (Turma) t;
+                for (Object a : vecAnoAcademico) {
+                    ano = (AnoAcademico) a;
+                    for (Object m: vecMatricula){
+                        mat = (Matricula) m;
+                        
+                        if (aluno.getNrEstudante() == mat.getNrEstudante() && mat.getIdTurma() == 1 && mat.getIdAnoAcademico() == 1) {
+                            System.out.println(aluno.getpNome());
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public static void VisualizarMediasNotaGlobal() {
@@ -44,19 +65,19 @@ public class Visualizar {
             aluno = (Aluno) vecAluno.elementAt(i);
             if (ctrl) {
                 String format = "%-15s %-12s %-14s %-20s %-12s %-20s %-20s %-20s %-20s %-20s";
-                System.out.println(String.format(format, "nrEstudante", "idPessoa", "pNome", "apelido", "sexo", "nrBI", "estadoCivil", 
+                System.out.println(String.format(format, "nrEstudante", "idPessoa", "pNome", "apelido", "sexo", "nrBI", "estadoCivil",
                         "Telefone 1 & 2", "Data de Nascimento", "Nome do Encarregado"));
                 ctrl = false;
             }
             for (int j = 0; j < vecEncarregado.size(); j++) {
                 ed = (EncarregadoEducacao) vecEncarregado.elementAt(j);
-                if (ed.getIdPessoa()== aluno.getIdEncarregadoEducacao()) {
+                if (ed.getIdPessoa() == aluno.getIdEncarregadoEducacao()) {
                     System.out.println(aluno.toString(ed.getpNome() + " " + ed.getApelido()));
                 }
             }
         }
     }
-    
+
     public static void ViewEncarregadoEducacao() {
         EncarregadoEducacao ed;
         boolean ctrl = true;
@@ -65,14 +86,14 @@ public class Visualizar {
             ed = (EncarregadoEducacao) vecEncarregado.elementAt(i);
             if (ctrl) {
                 String format = "%-12s %-15s %-20s %-12s %-20s %-20s %-20s %-20s";
-                System.out.println(String.format(format, "idPessoa", "pNome", "apelido", "sexo", "nrBI", "estadoCivil", 
-                         "Telefone 1 & 2", "Grau Parentesco"));
+                System.out.println(String.format(format, "idPessoa", "pNome", "apelido", "sexo", "nrBI", "estadoCivil",
+                        "Telefone 1 & 2", "Grau Parentesco"));
                 ctrl = false;
             }
             System.out.println(ed.toString());
         }
     }
-    
+
     public static void ViewProfessor() {
         Professor prof;
         boolean ctrl = true;
@@ -81,8 +102,8 @@ public class Visualizar {
             prof = (Professor) vecProfessor.elementAt(i);
             if (ctrl) {
                 String format = "%-12s %-14s %-20s %-12s %-20s %-20s %-20s %-20s";
-                System.out.println(String.format(format, "idPessoa", "pNome", "apelido", "sexo", "nrBI", "estadoCivil", 
-                         "Telefone 1 & 2", "Grau Academico"));
+                System.out.println(String.format(format, "idPessoa", "pNome", "apelido", "sexo", "nrBI", "estadoCivil",
+                        "Telefone 1 & 2", "Grau Academico"));
                 ctrl = false;
             }
             System.out.println(prof.toString());
