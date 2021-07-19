@@ -31,7 +31,7 @@ public class Editar {
         Pessoa x;
         int nrEstudante, pos;
 
-        nrEstudante = (int) Validar.numero("Numero do estudante: ", 1000, 9999);
+        nrEstudante = (int) Validar.numero("Numero do estudante: ", 100, 9999);
 
         pos = -1;
         for (int i = 0; i < vecAluno.size(); i++) {

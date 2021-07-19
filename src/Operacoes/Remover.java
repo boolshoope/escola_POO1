@@ -27,7 +27,7 @@ public class Remover {
     public static void DelAluno(){
         int nrEstudante;
         
-        nrEstudante = (int) Validar.numero("Numero de estudante: ",1000, 9999);
+        nrEstudante = (int) Validar.numero("Numero de estudante: ",100, 9999);
         
         rmAluno(nrEstudante);
     }
@@ -139,7 +139,7 @@ public class Remover {
     public static void DelClasse() {
         int id;
         
-        id = (int) Validar.numero("ID(disciplina): ",1,9999);
+        id = (int) Validar.numero("ID(Classe): ",1,9999);
         
         rmClasse(id);
     }
