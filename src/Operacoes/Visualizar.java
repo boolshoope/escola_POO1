@@ -25,15 +25,16 @@ public class Visualizar {
         boolean ctrl = true;
         String format = "%-20s %-20s";
 
-        int idTurma, idAnoAcademico;
+        int idTurma, idAnoAcademico, ano;
 
         do {
             idTurma = (int) Validar.numero("Id Turma: ", 1, 9999);
         } while (!Validar.VerificarIdTurma(idTurma));
 
         do {
-            idAnoAcademico = (int) Validar.numero("Id Ano Academico: ", 1, 9999);
-        } while (!Validar.VerificarIdAnoAcademico(idAnoAcademico));
+            ano = (int) Validar.numero("Ano Lectivo: ", 2000, 3000);
+        } while (Validar.VerificarAnoLectivo(ano) == -1);
+        idAnoAcademico = Validar.VerificarAnoLectivo(ano);
 
         for (Object al : vecAluno) {
             aluno = (Aluno) al;
@@ -68,7 +69,7 @@ public class Visualizar {
         Turma turma;
         ClasseDiscProf cdp;
         AnoAcademico ac;
-        int ano = 2020, nrEstudante, idTurma = 0, idClasse = 0, countDisc = 0, countTrim = 3, mediaF = 0;
+        int ano = 2020, idAno, nrEstudante, idTurma = 0, idClasse = 0, countDisc = 0, countTrim = 3, mediaF = 0;
 
         Vector vecDiscCod = new Vector(), vecDiscNome = new Vector();
         int[][] medTrim;
@@ -81,12 +82,13 @@ public class Visualizar {
         
         do {
             ano = (int) Validar.numero("Ano Lectivo: ", 2000, 3000);
-        } while (!Validar.VerificarNrEstudante(nrEstudante));
-
+        } while (Validar.VerificarAnoLectivo(ano) == -1);
+        idAno = Validar.VerificarAnoLectivo(ano);
+        
         //Obter o idTurma
         for (Object m : vecMatricula) {
             mat = (Matricula) m;
-            if (mat.getNrEstudante() == nrEstudante && mat.getIdAnoAcademico() == ano) {
+            if (mat.getNrEstudante() == nrEstudante && mat.getIdAnoAcademico() == idAno) {
                 idTurma = mat.getIdTurma();
             }
         }
@@ -110,7 +112,6 @@ public class Visualizar {
                     countDisc++;
                 }
             }
-
         }
 
         medTrim = new int[countDisc][countTrim];
@@ -151,7 +152,55 @@ public class Visualizar {
     }
 
     public static void VisualizarNotasAlunoTrimestre() {
+        /*
+        Matricula mat;
+        Teste teste;
+        AnoAcademico anoAc;
+        Disciplina disc;
+        boolean ctrl = true;
+        String format = "%-20s %-20s";
 
+        int nrEst, idAnoAcademico, ano, trimestre, idTrimestre;
+
+        do {
+            nrEst = (int) Validar.numero("Nr Estudante: ", 100, 9999);
+        } while (!Validar.VerificarNrEstudante(nrEst));
+
+        do {
+            ano = (int) Validar.numero("Ano Lectivo: ", 2000, 3000);
+        } while (Validar.VerificarAnoLectivo(ano) == -1);
+        idAnoAcademico = Validar.VerificarAnoLectivo(ano);
+        
+        do {
+            trimestre = (int) Validar.numero("Trimestre: ", 1, 3);
+        } while (Validar.VerificarTrimestre(ano, idAnoAcademico) == -1);
+        idTrimestre = Validar.VerificarTrimestre(ano, idAnoAcademico);
+
+        for (Object al : vecAnoAcademico) {
+            anoAc = (Aluno) al;
+            for (Object m : vecMatricula) {
+                mat = (Matricula) m;
+                for (Object t : vecTeste) {
+                    teste = (Teste) t;
+                    for (Object d : vecDisciplina) {
+                        disc = (Disciplina) d;
+                        if (aluno.getNrEstudante() == mat.getNrEstudante() && teste.getIdDisciplina() == disc.getIdDisciplina()
+                                && teste.getNrEstudante() == aluno.getNrEstudante() && teste.getIdAnoAcademico() == idAnoAcademico
+                                && mat.getIdTurma() == nrEst && mat.getIdAnoAcademico() == idAnoAcademico) {
+
+                            if (ctrl) {
+                                format = "%-20s %-15s %-15s %-15s %-15s";
+                                System.out.println(String.format(format, "Nome do Aluno", "Nota", "Disciplina", "Tipo do teste", "Peso"));
+                                ctrl = false;
+                            }
+                            System.out.println(String.format(format, aluno.getpNome() + " " + aluno.getApelido(), teste.getNota(), disc.getNome(),
+                                    teste.getTipo(), teste.getPeso() + "%"));
+                        }
+                    }
+                }
+            }
+        }
+        */
     }
     // </editor-fold>
 

@@ -204,13 +204,28 @@ public class Validar {
         for (int i = 0; i < vecAnoAcademico.size(); i++) {
             anoAcademico = (AnoAcademico) vecAnoAcademico.elementAt(i);
             if (a == anoAcademico.getAno()) {
-                ano = anoAcademico.getAno();
+                ano = anoAcademico.getIdAnoAcademico();
             }
         }
         if (ano == -1) {
-            System.out.println("Ano Academico nao encontrado, introduza novamente");
+            System.out.println("Ano Lectivo nao encontrado, introduza novamente");
         }
         return ano;
+    }
+    
+    public static int VerificarTrimestre(int a, int b) {
+        AnoAcademico anoAcademico;
+        int trimestre = -1;
+        for (int i = 0; i < vecAnoAcademico.size(); i++) {
+            anoAcademico = (AnoAcademico) vecAnoAcademico.elementAt(i);
+            if (a == anoAcademico.getTrimestre() && b == anoAcademico.getIdAnoAcademico()) {
+                trimestre = anoAcademico.getTrimestre();
+            }
+        }
+        if (trimestre == -1) {
+            System.out.println("Trimestre nao encontrado, introduza novamente");
+        }
+        return trimestre;
     }
 
     public static boolean VerificarNrEstudante(int id) {
