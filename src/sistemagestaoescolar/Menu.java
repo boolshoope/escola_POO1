@@ -77,7 +77,7 @@ public class Menu {
         vecClasse = BD.LerDadosDoFichObj("Classe");
         vecTurma = BD.LerDadosDoFichObj("Turma");
 
-        //BD.GravarFichObj(new Vector(), "Aluno");
+        //BD.GravarFichObj(new Vector(), "Turma");
     }
 
     static void GravarVectores() {

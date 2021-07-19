@@ -119,6 +119,7 @@ public class Adicionar {
 
     public static void AddDisciplina() {
         int id = Validar.GetIdDisciplina();
+        System.out.println("ID: " + id);
         String nome = Validar.texto("Nome: ", 4);
 
         Disciplina disc = new Disciplina(id, nome);
@@ -128,6 +129,7 @@ public class Adicionar {
 
     public static void AddClasse() {
         int id = Validar.GetIdClasse();
+        System.out.println("ID: " + id);
         String nome = Validar.texto("Nome: ", 1);
 
         Classe classe = new Classe(id, nome);
@@ -137,12 +139,13 @@ public class Adicionar {
 
     public static void AddTurma() {
         int id = Validar.GetIdTurma();
+        System.out.println("ID: " + id);
         String nome = Validar.texto("Nome: ", 1);
         int maxAlunos = (int) Validar.numero("Numero maximo de alunos: ", 10, 99);
         int idClasse;
         do{
             idClasse = (int) Validar.numero("Id Classe: ", 1, 9999);
-        }while(!Validar.VerificarIDClasse(id));
+        }while(!Validar.VerificarIDClasse(idClasse));
         Turma turma = new Turma(id, nome, maxAlunos, idClasse);
         vecTurma.addElement(turma);
         vecTurma.trimToSize();
