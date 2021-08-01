@@ -119,7 +119,13 @@ public class Pessoa implements Serializable{
     }
 
     public String toString() {
-        String format = "%-12s %-15s %-20s %-12s %-20s %-20s %-20s";
-        return String.format(format, idPessoa, pNome, apelido, sexo, nrBI, estadoCivil, tel1 + "  " + tel2);
+        String format = "%-12s %-15s %-20s %-12s %-20s %-20s %-25s", s = "";
+        if (sexo == 'M') {
+            s = "Masculino";
+        }else if (sexo == 'F') {
+            s = "Feminino";
+        }
+        
+        return String.format(format, idPessoa, pNome, apelido, s, nrBI, estadoCivil, tel1 + "  " + tel2);
     }
 }

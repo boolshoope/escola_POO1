@@ -218,7 +218,7 @@ public class Adicionar {
         } while (!Validar.VerificarIDClasse(idClasse));
 
         do {
-            idDisciplina = (int) Validar.numero("Id Classe: ", 1, 9999);
+            idDisciplina = (int) Validar.numero("Id Disciplina: ", 1, 9999);
         } while (!Validar.VerificarIdDisciplina(idDisciplina));
 
         ClasseDiscProf cdp = new ClasseDiscProf(idClasse, idDisciplina, idProf);

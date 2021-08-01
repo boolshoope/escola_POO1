@@ -21,7 +21,6 @@ public class Menu {
 
     private static int opEsc;
 
-    public final static String nomeFich[] = {"aluno", "professor"};
     public static Vector vecAluno, vecProfessor, vecEncarregado, vecAnoAcademico, vecDisciplina, vecClasse, vecTurma, vecMatricula, vecClasseDiscProf, vecTeste;
 
     static void MainMenu() {
