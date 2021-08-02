@@ -145,7 +145,7 @@ public class Menu {
                 Adicionar.AddAnoAcademico();
                 break;
             case 3:
-                System.out.println("|**** Adicionar Disciplina ****|");
+                System.out.println("|**** Adicionar Disciplina 5****|");
                 Adicionar.AddDisciplina();
                 break;
             case 4:
@@ -154,7 +154,7 @@ public class Menu {
                 break;
             case 5:
                 System.out.println("|**** Adicionar Turma ****|");
-                Adicionar.AddTurma();
+                Adicionar.Turma();
                 break;
         }
     }
@@ -317,7 +317,10 @@ public class Menu {
         System.out.println("5. Classe");
         System.out.println("6. Turma");
         System.out.println("7. Aluno");
-        System.out.println("8. Voltar");
+        System.out.println("8. Professores de uma classe");
+        System.out.println("9. Disciplina de uma classe");
+        System.out.println("10. Disciplinas lecionadas por um Professor");
+        System.out.println("11. Voltar");
 
         opEsc = (int) Validar.numero("-> ", 1, 8);
         switch (opEsc) {
@@ -350,6 +353,16 @@ public class Menu {
                 Visualizar.ViewAluno();
                 break;
             case 8:
+                System.out.println("|**** Visualizar Professores de uma classe ****|");
+                Visualizar.viewAlunoProf();
+                break;
+            case 9:
+                System.out.println("|**** Visualizar Disciplinas de uma classe ****|");
+                Visualizar.viewDiscEst();
+                break;
+            case 10:
+                System.out.println("|**** Visualizar Disciplinas lecionadas por um Professor ****|");
+                Visualizar.viewProfDisc();
                 break;
         }
     }

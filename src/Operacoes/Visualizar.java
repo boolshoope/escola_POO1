@@ -325,4 +325,89 @@ public class Visualizar {
         }
     }
     // </editor-fold>
+    
+    public static void viewAlunoProf() {
+        ClasseDiscProf cdp;
+        Professor prof;
+        int idClasse;
+        String format =  "%-20 %-20 %-20";
+        boolean ctrl = true;
+        
+        do {
+            idClasse =(int) Validar.numero("ID(Classe) do aluno: ",1,99999999);
+        }while(!Validar.VerificarIDClasse(idClasse));
+        
+        for(int i=0;i<vecClasseDiscProf.size();i++) {
+            cdp = (ClasseDiscProf) vecClasseDiscProf.elementAt(i);
+            if(cdp.getIdClasse() != idClasse)
+                continue;
+            for(int j=0;j<vecProfessor.size();j++) {
+                prof = (Professor) vecProfessor.elementAt(j);
+                if(prof.getIdPessoa() != cdp.getIdProfessor())
+                    continue;
+                if(ctrl) {
+                    System.out.println(String.format(format,"Nome", "Apelido","Grau Academico"));
+                    ctrl = false;
+                }
+                
+                System.out.println(String.format(format,prof.getpNome(),prof.getApelido(),prof.getGrauAcademico()));
+            }
+        }
+    }
+    
+    public static void viewDiscEst() {
+        Disciplina d;
+        ClasseDiscProf cdp;
+        int idClasse;
+        String format = "%-20";
+        boolean ctrl = true;
+        
+        do {
+            idClasse =(int) Validar.numero("ID(Classe) do aluno: ",1,99999999);
+        }while(!Validar.VerificarIDClasse(idClasse));
+        
+        for(int i=0;i<vecClasseDiscProf.size();i++) {
+            cdp = (ClasseDiscProf) vecClasseDiscProf.elementAt(i);
+            if(cdp.getIdClasse() != idClasse)
+                continue;
+            for(int j=0;j<vecDisciplina.size();j++){
+                d =(Disciplina) vecDisciplina.elementAt(j);
+                if(cdp.getIdDisciplina() != d.getIdDisciplina())
+                    continue;
+                if(ctrl) {
+                    System.out.println(String.format(format,"Nome"));
+                    ctrl = false;
+                }
+                System.out.println(String.format(format,d.getNome()));
+            }
+        }
+    }
+    
+    public static void viewProfDisc() {
+        Disciplina d;
+        ClasseDiscProf cdp;
+        int idProf;
+        String format = "%-20";
+        boolean ctrl = true;
+        
+        do {
+            idProf =(int) Validar.numero("ID(Classe) do aluno: ",1,99999999);
+        }while(!Validar.VerificarIDClasse(idProf));
+        
+        for(int i=0;i<vecClasseDiscProf.size();i++) {
+            cdp = (ClasseDiscProf) vecClasseDiscProf.elementAt(i);
+            if(cdp.getIdProfessor() != idProf)
+                continue;
+            for(int j=0;j<vecDisciplina.size();j++){
+                d =(Disciplina) vecDisciplina.elementAt(j);
+                if(cdp.getIdDisciplina() != d.getIdDisciplina())
+                    continue;
+                if(ctrl) {
+                    System.out.println(String.format(format,"Nome"));
+                    ctrl = false;
+                }
+                System.out.println(String.format(format,d.getNome()));
+            }
+        }
+    }
 }

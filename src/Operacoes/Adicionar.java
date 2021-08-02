@@ -166,31 +166,77 @@ public class Adicionar {
         vecClasse.trimToSize();
         System.out.println("Sucesso!!!");
     }
-
-    public static void AddTurma() {
-        int id = Validar.GetIdTurma();
-        System.out.println("ID: " + id);
-        String nome = Validar.texto("Nome: ", 1);
-        int maxAlunos = (int) Validar.numero("Numero maximo de alunos: ", 10, 99);
+    
+    public static void Turma()  {
         int idClasse;
+        
         do {
             idClasse = (int) Validar.numero("Id Classe: ", 1, 9999);
         } while (!Validar.VerificarIDClasse(idClasse));
+        
+        AddTurma(idClasse);
+        System.out.println("Sucesso!");
+    }
+
+    private static int AddTurma(int idClasse) {
+        int id = Validar.GetIdTurma();
+        System.out.println("ID: " + id);
+        String nome = Validar.texto("Nome: ", 1);
+        int maxAlunos =(int) Validar.numero("Capacidade maxima da turma: ", 1, 99);
         Turma turma = new Turma(id, nome, maxAlunos, idClasse);
         vecTurma.addElement(turma);
         vecTurma.trimToSize();
         System.out.println("Sucesso!!!");
+        return id;
     }
 
+    private static int classeTurma(int idClasse) {
+        Turma turma;
+        int index = -1;
+        for(int i=0;i<vecTurma.size();i++) {
+            turma = (Turma) vecTurma.elementAt(i);
+            if(idClasse == turma.getIdClasse()) {
+                if(!turma.full())
+                    index = i;
+            }
+        }
+        return index;
+    }
+    
+    private static int indTurma(int idTurma) {
+        Turma turma;
+        int index = -1;
+        for(int i=0;i<vecTurma.size();i++) {
+            turma = (Turma) vecTurma.elementAt(i);
+            if(turma.getIdTurma() == idTurma)
+                index = i;
+        }
+        return index;
+    }
+    
     public static void AddMatricula(int nrEst) {
-        int idTurma, idAnoAcademico;
-        do {
-            idTurma = (int) Validar.numero("Id Turma: ", 1, 9999);
-        } while (!Validar.VerificarIdTurma(idTurma));
-
+        Turma turma;
+        int idTurma, idAnoAcademico, idClasse, index;
+        
         do {
             idAnoAcademico = (int) Validar.numero("Id AnoAcademico: ", 1, 9999);
         } while (!Validar.VerificarIdAnoAcademico(idAnoAcademico));
+        
+        do {
+            idClasse = (int) Validar.numero("Id Classe: ", 1, 9999);
+        } while (!Validar.VerificarIDClasse(idClasse));
+        
+        if((index = classeTurma(idClasse)) == -1) {
+            idTurma = AddTurma(idClasse);
+            index = indTurma(idTurma);
+            turma =(Turma) vecTurma.elementAt(index);
+        }else {
+            turma =(Turma) vecTurma.elementAt(index);
+            idTurma = turma.getIdTurma();
+        }
+        
+        turma.addAluno();
+        vecTurma.setElementAt(turma, index);
 
         Matricula mat = new Matricula(nrEst, idTurma, idAnoAcademico);
         vecMatricula.addElement(mat);

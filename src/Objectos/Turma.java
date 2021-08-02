@@ -16,6 +16,7 @@ public class Turma implements Serializable{
     private int idTurma;
     private String nome;
     private int maxAlunos;
+    private int numAluno;
     private int idClasse;
 
     public Turma(int idTurma, String nome, int maxAlunos, int idClasse) {
@@ -23,6 +24,7 @@ public class Turma implements Serializable{
         this.nome = nome;
         this.maxAlunos = maxAlunos;
         this.idClasse = idClasse;
+        this.numAluno = 0;
     }
 
     public int getIdTurma() {
@@ -55,6 +57,21 @@ public class Turma implements Serializable{
 
     public void setIdClasse(int idClasse) {
         this.idClasse = idClasse;
+    }
+
+    public int getNumAluno() {
+        return numAluno;
+    }
+    
+    public void addAluno() {
+        numAluno++;
+    }
+    
+    public boolean full() {
+        if(numAluno == maxAlunos)
+            return true;
+        else
+            return false;
     }
 
     public String toString(String classe) {
