@@ -46,7 +46,7 @@ public class BD {
         } catch (ClassNotFoundException cc) {
             System.out.println("Verifique a existencia da classe " + obj);
         } catch (IOException pp) {
-            System.out.println("Problemas no leitura do ficheiro!");
+            System.out.println("Problemas no leitura do ficheiro! " + obj);
         }
         return vec;
     }
