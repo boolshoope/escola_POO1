@@ -535,13 +535,16 @@ public class Visualizar {
 
     public static void viewProfDisc() {
         Disciplina d;
+        Classe s;
         ClasseDiscProf cdp;
         int idProf;
-        String format = "%-20s";
+        String nomeClasse="";
+        String nomeDisc = "";
+        String format = "%-20s %-20s";
         boolean ctrl = true;
 
         do {
-            idProf = (int) Validar.numero("IDClasse: ", 1, 99999999);
+            idProf = (int) Validar.numero("ID(Professor): ", 1, 99999999);
         } while (!Validar.VerificarIDClasse(idProf));
 
         for (int i = 0; i < vecClasseDiscProf.size(); i++) {
@@ -554,12 +557,21 @@ public class Visualizar {
                 if (cdp.getIdDisciplina() != d.getIdDisciplina()) {
                     continue;
                 }
-                if (ctrl) {
-                    System.out.println(String.format(format, "Nome"));
-                    ctrl = false;
-                }
-                System.out.println(String.format(format, d.getNome()));
+                nomeDisc = d.getNome();
             }
+            
+            for(int k=0;k<vecClasse.size();k++) {
+                s =(Classe) vecClasse.elementAt(k);
+                if(s.getIdClasse() != cdp.getIdClasse())
+                    continue;
+                nomeClasse = s.getNome();
+            }
+            
+            if (ctrl) {
+                System.out.println(String.format(format, "Nome","Classe"));
+                ctrl = false;
+            }
+            System.out.println(String.format(format, nomeDisc, nomeClasse));
         }
     }
 }
