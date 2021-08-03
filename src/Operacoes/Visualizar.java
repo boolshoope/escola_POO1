@@ -7,6 +7,21 @@ package Operacoes;
 
 import Objectos.*;
 import Validar.Validar;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 import static sistemagestaoescolar.Menu.*;
 
@@ -62,14 +77,15 @@ public class Visualizar {
         }
     }
 
-    public static void VisualizarMediasNotaGlobal() {
+    public static void VisualizarMediasNotaGlobal(boolean print) {
         Matricula mat;
         Teste teste;
         Disciplina disc;
         Turma turma;
         ClasseDiscProf cdp;
         AnoAcademico ac;
-        int ano = 2020, idAno, nrEstudante, idTurma = 0, idClasse = 0, countDisc = 0, countTrim = 3, mediaF = 0;
+
+        int ano, idAno, nrEstudante, idTurma = 0, idClasse = 0, countDisc = 0, countTrim = 3, mediaF = 0;
 
         Vector vecDiscCod = new Vector(), vecDiscNome = new Vector();
         int[][] medTrim;
@@ -98,6 +114,7 @@ public class Visualizar {
             turma = (Turma) t;
             if (turma.getIdTurma() == idTurma) {
                 idClasse = turma.getIdClasse();
+                dadosP[5] = turma.getNome();
             }
         }
 
@@ -144,13 +161,46 @@ public class Visualizar {
         }
         mediaF /= medTrim.length;
 
-        System.out.println("Medias Globais");
-        format = "%-20s %-20s";
-        System.out.println(String.format(format, "Disciplina", "Nota"));
-        for (int i = 0; i < media.length; i++) {
-            System.out.println(String.format(format, vecDiscNome.elementAt(i), media[i]));
+        if (print) {
+            System.out.println("Medias Globais");
+            format = "%-20s %-20s";
+            System.out.println(String.format(format, "Disciplina", "Nota"));
+            for (int i = 0; i < media.length; i++) {
+                System.out.println(String.format(format, vecDiscNome.elementAt(i), media[i]));
+            }
+            System.out.println("Media final: " + mediaF);
+        } else {
+            Aluno aluno;
+            EncarregadoEducacao enc;
+            Classe classe;
+            medGlobal = mediaF + "";
+            notas = new String[media.length][2];
+            for (int i = 0; i < media.length; i++) {
+                notas[i][0] = (String) vecDiscNome.elementAt(i);
+                notas[i][1] = media[i] + "";
+            }
+            dadosP[3] = ano + "";
+            for (int i = 0; i < vecClasse.size(); i++) {
+                classe = (Classe) vecClasse.elementAt(i);
+                dadosP[4] = classe.getNome();
+            }
+            for (int i = 0; i < vecAluno.size(); i++) {
+                aluno = (Aluno) vecAluno.elementAt(i);
+                if (aluno.getNrEstudante() != nrEstudante) {
+                    continue;
+                }
+                for (int j = 0; j < vecEncarregado.size(); j++) {
+                    enc = (EncarregadoEducacao) vecEncarregado.elementAt(j);
+                    if (aluno.getIdEncarregadoEducacao() == enc.getIdPessoa()) {
+                        dadosP[0] = aluno.getpNome() + " " + aluno.getApelido();
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                        String strDate = formatter.format(aluno.getDataNascimento());
+                        dadosP[1] = strDate;
+                        dadosP[2] = enc.getpNome() + " " + enc.getApelido();
+                    }
+                }
+            }
         }
-        System.out.println("Media final: " + mediaF);
     }
 
     public static void VisualizarNotasAlunoTrimestre() {
@@ -325,88 +375,190 @@ public class Visualizar {
         }
     }
     // </editor-fold>
-    
+
+    static String[] dadosP = new String[6];
+    static String[][] notas;
+    static String medGlobal;
+
+    public static void GerarCertificado() {
+        VisualizarMediasNotaGlobal(false);
+        String path = "D:\\certif.pdf";
+        Document doc = new Document();
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream(path));
+            doc.open();
+
+            Font fontH1 = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD);
+            Font fontH2 = new Font(Font.FontFamily.HELVETICA, 14, Font.NORMAL);
+            Font fontH3 = new Font(Font.FontFamily.HELVETICA, 13, Font.NORMAL);
+            Font fontB = new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD);
+
+            Paragraph p = new Paragraph(new Phrase("UNIVERSIDADE EDUARDO MONDLANE\nEscola Completa da Feng\n\n", fontH2));
+            p.setAlignment(1);
+            doc.add(p);
+            p = new Paragraph(new Phrase("CERTIFICADO\n\n", fontH1));
+            p.setAlignment(1);
+            doc.add(p);
+
+            p = new Paragraph("    Eu, Isac Matusse, Diretor da Escola Completa da Feng, certifico, em cumprimento do despacho exarado em requerimento"
+                    + " que fica arquivado na secreataria da escola que, " + dadosP[0] + ", nascido(a) aos " + dadosP[1] + " com o Encarregado"
+                    + " de Educação " + dadosP[2] + " no ano lectivo de " + dadosP[3] + " frequentou nessa escola a " + dadosP[4]
+                    + " com as seguintes classificações:\n\n");
+            p.setAlignment(3);
+            p.setIndentationLeft(20);
+            p.setIndentationRight(25);
+            doc.add(p);
+
+            PdfPTable table = new PdfPTable(2);
+
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Disciplina", fontH3));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Nota", fontH3));
+            cel1.setBorder(Rectangle.NO_BORDER);
+            cel2.setBorder(Rectangle.NO_BORDER);
+
+            table.addCell(cel1);
+            table.addCell(cel2);
+
+            cel1 = new PdfPCell(new Paragraph("\n"));
+            cel2 = new PdfPCell(new Paragraph("\n"));
+            cel1.setBorder(Rectangle.NO_BORDER);
+            cel2.setBorder(Rectangle.NO_BORDER);
+
+            table.addCell(cel1);
+            table.addCell(cel2);
+
+            for (int i = 0; i < notas.length; i++) {
+                cel1 = new PdfPCell(new Paragraph(notas[i][0], fontH3));
+                cel2 = new PdfPCell(new Paragraph(notas[i][1], fontH3));
+                cel1.setBorder(Rectangle.NO_BORDER);
+                cel2.setBorder(Rectangle.NO_BORDER);
+
+                table.addCell(cel1);
+                table.addCell(cel2);
+
+                cel1 = new PdfPCell(new Paragraph("\n"));
+                cel2 = new PdfPCell(new Paragraph("\n"));
+                cel1.setBorder(Rectangle.NO_BORDER);
+                cel2.setBorder(Rectangle.NO_BORDER);
+
+                table.addCell(cel1);
+                table.addCell(cel2);
+            }
+            cel1 = new PdfPCell(new Paragraph("Media", fontB));
+            cel2 = new PdfPCell(new Paragraph(medGlobal, fontB));
+            cel1.setBorder(Rectangle.NO_BORDER);
+            cel2.setBorder(Rectangle.NO_BORDER);
+
+            table.addCell(cel1);
+            table.addCell(cel2);
+            
+            doc.add(table);
+            
+            p = new Paragraph("\n\n    Foi-lhe atribuido(a) a media final de " + medGlobal + " Valores que consta na pauta de frequancia de " + dadosP[3]
+                    + ", " + dadosP[4] + ", na turma " + dadosP[5] + ".\n"
+                    + "    E por ser verdade mandei passar o seguinte certificado que assino e autentico com o selo branco em use nessa escola");
+            p.setAlignment(3);
+            p.setIndentationLeft(20);
+            p.setIndentationRight(25);
+            doc.add(p);
+            
+            doc.close();
+            Desktop.getDesktop().open(new File(path));
+
+        } catch (DocumentException | FileNotFoundException ex) {
+            System.out.println(ex.toString());
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
+        }
+    }
+
     public static void viewAlunoProf() {
         ClasseDiscProf cdp;
         Professor prof;
         int idClasse;
-        String format =  "%-20 %-20 %-20";
+        String format = "%-20 %-20 %-20";
         boolean ctrl = true;
-        
+
         do {
-            idClasse =(int) Validar.numero("ID(Classe) do aluno: ",1,99999999);
-        }while(!Validar.VerificarIDClasse(idClasse));
-        
-        for(int i=0;i<vecClasseDiscProf.size();i++) {
+            idClasse = (int) Validar.numero("ID(Classe) do aluno: ", 1, 99999999);
+        } while (!Validar.VerificarIDClasse(idClasse));
+
+        for (int i = 0; i < vecClasseDiscProf.size(); i++) {
             cdp = (ClasseDiscProf) vecClasseDiscProf.elementAt(i);
-            if(cdp.getIdClasse() != idClasse)
+            if (cdp.getIdClasse() != idClasse) {
                 continue;
-            for(int j=0;j<vecProfessor.size();j++) {
+            }
+            for (int j = 0; j < vecProfessor.size(); j++) {
                 prof = (Professor) vecProfessor.elementAt(j);
-                if(prof.getIdPessoa() != cdp.getIdProfessor())
+                if (prof.getIdPessoa() != cdp.getIdProfessor()) {
                     continue;
-                if(ctrl) {
-                    System.out.println(String.format(format,"Nome", "Apelido","Grau Academico"));
+                }
+                if (ctrl) {
+                    System.out.println(String.format(format, "Nome", "Apelido", "Grau Academico"));
                     ctrl = false;
                 }
-                
-                System.out.println(String.format(format,prof.getpNome(),prof.getApelido(),prof.getGrauAcademico()));
+
+                System.out.println(String.format(format, prof.getpNome(), prof.getApelido(), prof.getGrauAcademico()));
             }
         }
     }
-    
+
     public static void viewDiscEst() {
         Disciplina d;
         ClasseDiscProf cdp;
         int idClasse;
         String format = "%-20";
         boolean ctrl = true;
-        
+
         do {
-            idClasse =(int) Validar.numero("ID(Classe) do aluno: ",1,99999999);
-        }while(!Validar.VerificarIDClasse(idClasse));
-        
-        for(int i=0;i<vecClasseDiscProf.size();i++) {
+            idClasse = (int) Validar.numero("ID(Classe) do aluno: ", 1, 99999999);
+        } while (!Validar.VerificarIDClasse(idClasse));
+
+        for (int i = 0; i < vecClasseDiscProf.size(); i++) {
             cdp = (ClasseDiscProf) vecClasseDiscProf.elementAt(i);
-            if(cdp.getIdClasse() != idClasse)
+            if (cdp.getIdClasse() != idClasse) {
                 continue;
-            for(int j=0;j<vecDisciplina.size();j++){
-                d =(Disciplina) vecDisciplina.elementAt(j);
-                if(cdp.getIdDisciplina() != d.getIdDisciplina())
+            }
+            for (int j = 0; j < vecDisciplina.size(); j++) {
+                d = (Disciplina) vecDisciplina.elementAt(j);
+                if (cdp.getIdDisciplina() != d.getIdDisciplina()) {
                     continue;
-                if(ctrl) {
-                    System.out.println(String.format(format,"Nome"));
+                }
+                if (ctrl) {
+                    System.out.println(String.format(format, "Nome"));
                     ctrl = false;
                 }
-                System.out.println(String.format(format,d.getNome()));
+                System.out.println(String.format(format, d.getNome()));
             }
         }
     }
-    
+
     public static void viewProfDisc() {
         Disciplina d;
         ClasseDiscProf cdp;
         int idProf;
         String format = "%-20";
         boolean ctrl = true;
-        
+
         do {
-            idProf =(int) Validar.numero("ID(Classe) do aluno: ",1,99999999);
-        }while(!Validar.VerificarIDClasse(idProf));
-        
-        for(int i=0;i<vecClasseDiscProf.size();i++) {
+            idProf = (int) Validar.numero("ID(Classe) do aluno: ", 1, 99999999);
+        } while (!Validar.VerificarIDClasse(idProf));
+
+        for (int i = 0; i < vecClasseDiscProf.size(); i++) {
             cdp = (ClasseDiscProf) vecClasseDiscProf.elementAt(i);
-            if(cdp.getIdProfessor() != idProf)
+            if (cdp.getIdProfessor() != idProf) {
                 continue;
-            for(int j=0;j<vecDisciplina.size();j++){
-                d =(Disciplina) vecDisciplina.elementAt(j);
-                if(cdp.getIdDisciplina() != d.getIdDisciplina())
+            }
+            for (int j = 0; j < vecDisciplina.size(); j++) {
+                d = (Disciplina) vecDisciplina.elementAt(j);
+                if (cdp.getIdDisciplina() != d.getIdDisciplina()) {
                     continue;
-                if(ctrl) {
-                    System.out.println(String.format(format,"Nome"));
+                }
+                if (ctrl) {
+                    System.out.println(String.format(format, "Nome"));
                     ctrl = false;
                 }
-                System.out.println(String.format(format,d.getNome()));
+                System.out.println(String.format(format, d.getNome()));
             }
         }
     }

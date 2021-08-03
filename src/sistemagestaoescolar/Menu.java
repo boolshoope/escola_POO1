@@ -6,16 +6,29 @@
 package sistemagestaoescolar;
 
 import BaseDeDados.BD;
+import Objectos.Aluno;
 import Operacoes.Adicionar;
 import Operacoes.Editar;
 import Operacoes.Remover;
 import Operacoes.Visualizar;
 import Validar.Validar;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,7 +42,7 @@ public class Menu {
 
     static void MainMenu() {
         InicializarVectores();
-        System.out.println("" + Adicionar.classeTurma(1 ,9));
+        System.out.println("" + Adicionar.classeTurma(1, 9));
 
         int opEsc;
         System.out.println("|*********** Sistema de Gestão de uma Escola ***********|");
@@ -41,7 +54,7 @@ public class Menu {
             System.out.println("2. Registar Testes/Alocar/Renovação de Matricula");
             System.out.println("3. Visualizar notas dos alunos");
             System.out.println("4. Visualizar outros dados");
-            System.out.println("5. Visualizar outros dados");
+            System.out.println("5. Gerar Certificado");
             System.out.println("6. Sair");
 
             opEsc = (int) Validar.numero("-> ", 1, 6);
@@ -64,7 +77,8 @@ public class Menu {
                     MainCase4();
                     break;
                 case 5:
-                    Certif();
+                    System.out.println("\n|**** Gerar Certificado ****|");
+                    Visualizar.GerarCertificado();
                     break;
                 case 6:
                     GravarVectores();
@@ -87,7 +101,7 @@ public class Menu {
         vecMatricula = BD.LerDadosDoFichObj("Matricula");
         vecTeste = BD.LerDadosDoFichObj("Teste");
         vecClasseDiscProf = BD.LerDadosDoFichObj("ClasseDiscProf");
-        
+
         //BD.GravarFichObj(new Vector(), "Matricula");
     }
 
@@ -304,7 +318,7 @@ public class Menu {
                 break;
             case 2:
                 System.out.println("\n|**** Listar as medias e a nota global de um aluno num determinado ano academico ****|");
-                Visualizar.VisualizarMediasNotaGlobal();
+                Visualizar.VisualizarMediasNotaGlobal(true);
                 break;
             case 3:
                 System.out.println("\n|**** Listar as notas de um determinado aluno num trimestre ****|");
@@ -376,18 +390,6 @@ public class Menu {
         }
     }
     // </editor-fold>
+
     
-    static void Certif(){
-        System.out.println("asdasdasdasd");
-        String path = "D:\\certif.pdf";
-        try {
-            PdfWriter pdfWriter = new PdfWriter(path);
-            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
-            Document doc = new Document(pdfDocument);
-            
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.toString());
-        }
-        
-    }
 }
