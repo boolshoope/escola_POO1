@@ -382,7 +382,7 @@ public class Visualizar {
 
     public static void GerarCertificado() {
         VisualizarMediasNotaGlobal(false);
-        String path = "D:\\certif.pdf";
+        String path = System.getProperty("user.dir") + "/certif.pdf";
         Document doc = new Document();
         try {
             PdfWriter.getInstance(doc, new FileOutputStream(path));
@@ -400,7 +400,7 @@ public class Visualizar {
             p.setAlignment(1);
             doc.add(p);
 
-            p = new Paragraph("    Eu, Isac Matusse, Diretor da Escola Completa da Feng, certifico, em cumprimento do despacho exarado em requerimento"
+            p = new Paragraph("Eu, Isac Matusse, Diretor da Escola Completa da Feng, certifico, em cumprimento do despacho exarado em requerimento"
                     + " que fica arquivado na secreataria da escola que, " + dadosP[0] + ", nascido(a) aos " + dadosP[1] + " com o Encarregado"
                     + " de Educação " + dadosP[2] + " no ano lectivo de " + dadosP[3] + " frequentou nessa escola a " + dadosP[4]
                     + " com as seguintes classificações:\n\n");
@@ -451,9 +451,9 @@ public class Visualizar {
 
             table.addCell(cel1);
             table.addCell(cel2);
-            
+
             doc.add(table);
-            
+
             p = new Paragraph("\n\n    Foi-lhe atribuido(a) a media final de " + medGlobal + " Valores que consta na pauta de frequancia de " + dadosP[3]
                     + ", " + dadosP[4] + ", na turma " + dadosP[5] + ".\n"
                     + "    E por ser verdade mandei passar o seguinte certificado que assino e autentico com o selo branco em use nessa escola");
@@ -461,7 +461,7 @@ public class Visualizar {
             p.setIndentationLeft(20);
             p.setIndentationRight(25);
             doc.add(p);
-            
+
             doc.close();
             Desktop.getDesktop().open(new File(path));
 
@@ -476,7 +476,7 @@ public class Visualizar {
         ClasseDiscProf cdp;
         Professor prof;
         int idClasse;
-        String format = "%-20 %-20 %-20";
+        String format = "%-20s %-20s %-20s";
         boolean ctrl = true;
 
         do {
@@ -507,11 +507,11 @@ public class Visualizar {
         Disciplina d;
         ClasseDiscProf cdp;
         int idClasse;
-        String format = "%-20";
+        String format = "%-20s";
         boolean ctrl = true;
 
         do {
-            idClasse = (int) Validar.numero("ID(Classe) do aluno: ", 1, 99999999);
+            idClasse = (int) Validar.numero("ID Classe: ", 1, 99999999);
         } while (!Validar.VerificarIDClasse(idClasse));
 
         for (int i = 0; i < vecClasseDiscProf.size(); i++) {
@@ -537,11 +537,11 @@ public class Visualizar {
         Disciplina d;
         ClasseDiscProf cdp;
         int idProf;
-        String format = "%-20";
+        String format = "%-20s";
         boolean ctrl = true;
 
         do {
-            idProf = (int) Validar.numero("ID(Classe) do aluno: ", 1, 99999999);
+            idProf = (int) Validar.numero("IDClasse: ", 1, 99999999);
         } while (!Validar.VerificarIDClasse(idProf));
 
         for (int i = 0; i < vecClasseDiscProf.size(); i++) {

@@ -6,29 +6,12 @@
 package sistemagestaoescolar;
 
 import BaseDeDados.BD;
-import Objectos.Aluno;
 import Operacoes.Adicionar;
 import Operacoes.Editar;
 import Operacoes.Remover;
 import Operacoes.Visualizar;
 import Validar.Validar;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -42,7 +25,6 @@ public class Menu {
 
     static void MainMenu() {
         InicializarVectores();
-        System.out.println("" + Adicionar.classeTurma(1, 9));
 
         int opEsc;
         System.out.println("|*********** Sistema de Gestão de uma Escola ***********|");
@@ -101,8 +83,6 @@ public class Menu {
         vecMatricula = BD.LerDadosDoFichObj("Matricula");
         vecTeste = BD.LerDadosDoFichObj("Teste");
         vecClasseDiscProf = BD.LerDadosDoFichObj("ClasseDiscProf");
-
-        //BD.GravarFichObj(new Vector(), "Matricula");
     }
 
     static void GravarVectores() {

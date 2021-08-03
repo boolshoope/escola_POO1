@@ -14,7 +14,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
+import static sistemagestaoescolar.Menu.*;
 
 /**
  *
@@ -50,4 +54,7 @@ public class BD {
         }
         return vec;
     }
+
+    
+    
 }

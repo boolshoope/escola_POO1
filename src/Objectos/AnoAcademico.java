@@ -26,24 +26,12 @@ public class AnoAcademico implements Serializable{
         return idAnoAcademico;
     }
 
-    public void setIdAnoAcademico(int idAnoAcademico) {
-        this.idAnoAcademico = idAnoAcademico;
-    }
-
     public int getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
-
     public int getTrimestre() {
         return trimestre;
-    }
-
-    public void setTrimestre(int trimestre) {
-        this.trimestre = trimestre;
     }
     
     public String toString(){

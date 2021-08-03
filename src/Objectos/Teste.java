@@ -40,72 +40,36 @@ public class Teste implements Serializable{
         return idTeste;
     }
 
-    public void setIdTeste(int idTeste) {
-        this.idTeste = idTeste;
-    }
-
     public float getNota() {
         return nota;
-    }
-
-    public void setNota(float nota) {
-        this.nota = nota;
     }
 
     public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public Date getDataRealizacao() {
         return dataRealizacao;
-    }
-
-    public void setDataRealizacao(Date dataRealizacao) {
-        this.dataRealizacao = dataRealizacao;
     }
 
     public float getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
-        this.peso = peso;
-    }
-
     public String getComentario() {
         return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
     }
 
     public int getIdAnoAcademico() {
         return idAnoAcademico;
     }
 
-    public void setIdAnoAcademico(int idAnoAcademico) {
-        this.idAnoAcademico = idAnoAcademico;
-    }
-
     public int getIdDisciplina() {
         return idDisciplina;
     }
 
-    public void setIdDisciplina(int idDisciplina) {
-        this.idDisciplina = idDisciplina;
-    }
-
     public int getNrEstudante() {
         return nrEstudante;
-    }
-
-    public void setNrEstudante(int nrEstudante) {
-        this.nrEstudante = nrEstudante;
     }
 
     public String toString(String est, String disc, String anoAcademico) {

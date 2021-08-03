@@ -15,11 +15,6 @@ public class Professor extends Pessoa implements Serializable{
 
     private String grauAcademico;
 
-    public Professor(int idPessoa, String pNome, String apelido, char sexo, String nrBI, String estadoCivil, String tel1, String tel2, String grauAcademico) {
-        super(idPessoa, pNome, apelido, sexo, nrBI, estadoCivil, tel1, tel2);
-        this.grauAcademico = grauAcademico;
-    }
-    
     public Professor(Pessoa x, String grauAcademico){
         super(x);
         this.grauAcademico = grauAcademico;
@@ -32,10 +27,6 @@ public class Professor extends Pessoa implements Serializable{
 
     public String getGrauAcademico() {
         return grauAcademico;
-    }
-
-    public void setGrauAcademico(String grauAcademico) {
-        this.grauAcademico = grauAcademico;
     }
 
     public String toString() {

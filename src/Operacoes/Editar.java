@@ -160,10 +160,9 @@ public class Editar {
 
         tmp = (AnoAcademico) vecAnoAcademico.elementAt(pos);
         int ano = (int) Validar.numero("Ano: ", 2000, 3000);
-        int trimestre = (int) Validar.numero("Trimestre: ", 1, 3);
+        int trimestre = (int) Validar.numero("Trimestre: ", 1, 5);
 
-        tmp.setAno(ano);
-        tmp.setTrimestre(trimestre);
+        tmp = new AnoAcademico(id, ano, trimestre);
 
         vecAnoAcademico.setElementAt(tmp, pos);
         vecAnoAcademico.trimToSize();

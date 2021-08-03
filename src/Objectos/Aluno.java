@@ -19,13 +19,6 @@ public class Aluno extends Pessoa implements Serializable{
     private Date dataNascimento;
     private int idEncarregadoEducacao;
 
-    public Aluno(int nrEstudante, Date dataNascimento, int idEncarregadoEducacao, int idPessoa, String pNome, String apelido, char sexo, String nrBI, String estadoCivil, String tel1, String tel2) {
-        super(idPessoa, pNome, apelido, sexo, nrBI, estadoCivil, tel1, tel2);
-        this.nrEstudante = nrEstudante;
-        this.dataNascimento = dataNascimento;
-        this.idEncarregadoEducacao = idEncarregadoEducacao;
-    }
-
     public Aluno(Pessoa x, int nrEstudante, Date dataNascimento, int idEncarregadoEducacao) {
         super(x);
         this.nrEstudante = nrEstudante;
@@ -42,24 +35,12 @@ public class Aluno extends Pessoa implements Serializable{
         return nrEstudante;
     }
 
-    public void setNrEstudante(int nrEstudante) {
-        this.nrEstudante = nrEstudante;
-    }
-
     public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
     public int getIdEncarregadoEducacao() {
         return idEncarregadoEducacao;
-    }
-
-    public void setIdEncarregadoEducacao(int idEncarregadoEducacao) {
-        this.idEncarregadoEducacao = idEncarregadoEducacao;
     }
 
     public String toString(String encEd) {
