@@ -66,57 +66,35 @@ public class Pessoa implements Serializable{
         return pNome;
     }
 
-    public void setpNome(String pNome) {
-        this.pNome = pNome;
-    }
 
     public String getApelido() {
         return apelido;
     }
 
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
-    }
 
     public char getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
-    }
 
     public String getNrBI() {
         return nrBI;
     }
 
-    public void setNrBI(String nrBI) {
-        this.nrBI = nrBI;
-    }
 
     public String getEstadoCivil() {
         return estadoCivil;
     }
 
-    public void setEstadoCivil(String estadoCivil) {
-        this.estadoCivil = estadoCivil;
-    }
 
     public String getTel1() {
         return tel1;
-    }
-
-    public void setTel1(String tel1) {
-        this.tel1 = tel1;
     }
 
     public String getTel2() {
         return tel2;
     }
 
-    public void setTel2(String tel2) {
-        this.tel2 = tel2;
-    }
 
     public String toString() {
         String format = "%-12s %-15s %-20s %-12s %-20s %-20s %-25s", s = "";
