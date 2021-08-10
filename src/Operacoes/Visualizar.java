@@ -264,7 +264,7 @@ public class Visualizar {
             aluno = (Aluno) vecAluno.elementAt(i);
             if (ctrl) {
                 String format = "%-15s %-12s %-14s %-20s %-12s %-20s %-20s %-25s %-20s %-20s";
-                System.out.println(String.format(format, "nrEstudante", "idPessoa", "pNome", "apelido", "sexo", "nrBI", "estadoCivil",
+                System.out.println(String.format(format, "nrEstudante", "idPessoa", "nome", "apelido", "sexo", "nrBI", "estadoCivil",
                         "Telefone 1 & 2", "Data de Nascimento", "Nome do Encarregado"));
                 ctrl = false;
             }
@@ -285,7 +285,7 @@ public class Visualizar {
             ed = (EncarregadoEducacao) vecEncarregado.elementAt(i);
             if (ctrl) {
                 String format = "%-12s %-15s %-20s %-12s %-20s %-20s %-25s %-20s";
-                System.out.println(String.format(format, "idPessoa", "pNome", "apelido", "sexo", "nrBI", "estadoCivil",
+                System.out.println(String.format(format, "idPessoa", "nome", "apelido", "sexo", "nrBI", "estadoCivil",
                         "Telefone 1 & 2", "Grau Parentesco"));
                 ctrl = false;
             }

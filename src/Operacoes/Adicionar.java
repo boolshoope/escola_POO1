@@ -175,7 +175,7 @@ public class Adicionar {
     
     private static int AddTurma(int idClasse) {
         int id = Validar.GetIdTurma();
-        System.out.println("ID: " + id);
+        System.out.println("ID Turma: " + id);
         String nome = Validar.texto("Nome: ", 1);
         int maxAlunos = (int) Validar.numero("Capacidade maxima da turma: ", 1, 99);
         Turma turma = new Turma(id, nome, maxAlunos, idClasse);
@@ -246,12 +246,12 @@ public class Adicionar {
             index = indTurma(idTurma);
             turma = (Turma) vecTurma.elementAt(index);
         } else {
-            turma = (Turma) vecTurma.elementAt(index);
-            idTurma = turma.getIdTurma();
+            //turma = (Turma) vecTurma.elementAt(index);
+            idTurma = index;
         }
 
         //turma.addAluno();
-        vecTurma.setElementAt(turma, index);
+        //vecTurma.setElementAt(turma, index);
         
         Matricula mat = new Matricula(nrEst, idTurma, idAnoAcademico);
         vecMatricula.addElement(mat);
