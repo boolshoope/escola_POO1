@@ -14,6 +14,7 @@ import java.util.IntSummaryStatistics;
 import static sistemagestaoescolar.Menu.vecAluno;
 import static sistemagestaoescolar.Menu.vecAnoAcademico;
 import static sistemagestaoescolar.Menu.vecClasse;
+import static sistemagestaoescolar.Menu.vecClasseDiscProf;
 import static sistemagestaoescolar.Menu.vecDisciplina;
 import static sistemagestaoescolar.Menu.vecEncarregado;
 import static sistemagestaoescolar.Menu.vecProfessor;
@@ -296,6 +297,23 @@ public class Validar {
         }
         if (!bool) {
             System.out.println("Disciplina nao encontrada, introduza novamente");
+        }
+        return bool;
+    }
+
+    public static boolean VerificarIdDisciplina(int idDisc, int idClasse) {
+        ClasseDiscProf cdp;
+        boolean bool = false;
+
+        for (int j = 0; j < vecClasseDiscProf.size(); j++) {
+            cdp = (ClasseDiscProf) vecClasseDiscProf.elementAt(j);
+            if (cdp.getIdDisciplina() == idDisc && cdp.getIdClasse() == idClasse) {
+                bool = true;
+            }
+
+        }
+        if (!bool) {
+            System.out.println("Disciplina nao pertence a " + idClasse + "a classe, introduza novamente");
         }
         return bool;
     }

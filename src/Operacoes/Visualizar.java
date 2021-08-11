@@ -115,6 +115,7 @@ public class Visualizar {
             if (turma.getIdTurma() == idTurma) {
                 idClasse = turma.getIdClasse();
                 dadosP[5] = turma.getNome();
+                dadosP[4] = turma.getIdClasse() + "a classe";
             }
         }
 
@@ -180,10 +181,6 @@ public class Visualizar {
                 notas[i][1] = media[i] + "";
             }
             dadosP[3] = ano + "";
-            for (int i = 0; i < vecClasse.size(); i++) {
-                classe = (Classe) vecClasse.elementAt(i);
-                dadosP[4] = classe.getNome();
-            }
             for (int i = 0; i < vecAluno.size(); i++) {
                 aluno = (Aluno) vecAluno.elementAt(i);
                 if (aluno.getNrEstudante() != nrEstudante) {
